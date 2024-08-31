@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let user of users">
+    <div (click)="startChat(user.uid)">
+      {{ user.firstName }} {{ user.lastName }}
+    </div>
+  </li>
+</ul>
+
+<p-button label="cerrar sesion" (onClick)="cerrarsesion()"></p-button>

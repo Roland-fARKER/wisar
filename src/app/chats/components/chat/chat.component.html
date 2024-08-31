@@ -1,0 +1,28 @@
+<div class="patGrid">
+  <div class="men"><h3>chat</h3></div>
+  <p-scrollPanel class="scroll-panel">
+    <div *ngFor="let message of messages">
+      <div
+        [ngClass]="{
+          'message-sent': message.senderId === currentUser?.uid,
+          'message-received': message.senderId !== currentUser?.uid
+        }"
+      >
+        <p class="mensaje">{{ message.text }}</p>
+        <small>{{ message.timestamp.toDate() | date : "short" }}</small>
+      </div>
+    </div>
+  </p-scrollPanel>
+  <div class="fott">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="newMessageText"
+      placeholder="Escribe un mensaje..."
+    />
+    <p-button
+      icon="fa-regular fa-paper-plane"
+      (onClick)="sendMessage()"
+    ></p-button>
+  </div>
+</div>
