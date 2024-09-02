@@ -1,6 +1,7 @@
 .patGrid {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  grid-gap: 10px;
   min-height: 100dvh;
   max-height:100dvh ;
 }
@@ -8,7 +9,6 @@
 .men{
     width: 100%;
     background-color: darkgrey;
-    padding: 10px;
 }
 
 .scroll-panel {

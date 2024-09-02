@@ -13,6 +13,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ListboxModule } from 'primeng/listbox';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [ LoaderComponent ],
@@ -28,7 +29,8 @@ import { ListboxModule } from 'primeng/listbox';
     ScrollPanelModule,
     AvatarModule,
     AvatarGroupModule,
-    ListboxModule
+    ListboxModule,
+    DividerModule
   ],
   exports: [
     ButtonModule,
@@ -42,7 +44,8 @@ import { ListboxModule } from 'primeng/listbox';
     ScrollPanelModule,
     AvatarModule,
     AvatarGroupModule,
-    ListboxModule
+    ListboxModule,
+    DividerModule
   ],
   providers: [ MessageService ]
 })

@@ -1,9 +1,31 @@
-<ul>
-  <li *ngFor="let user of users">
-    <div (click)="startChat(user.uid)">
+<div class="navchat">
+  <h3>Usuarios</h3>
+  <p-button
+    icon="fa-solid fa-right-from-bracket"
+    (onClick)="cerrarsesion()"
+  ></p-button>
+</div>
+<div class="wrap">
+  <div *ngFor="let user of users" class="chil">
+    <div (click)="startChat(user.uid)" class="chil2">
+      <p-avatar
+        *ngIf="user.profilePhotoUrl; else noImage"
+        [image]="user.profilePhotoUrl"
+        styleClass="mr-2"
+        size="large"
+        shape="circle"
+      ></p-avatar>
+      <ng-template #noImage>
+        <p-avatar
+          label="{{ user.firstName.charAt(0) | uppercase }}"
+          styleClass="mr-2"
+          size="large"
+          shape="circle"
+          [style]="{ 'background-color': '#001122', color: '#34D399' }"
+        ></p-avatar>
+      </ng-template>
       {{ user.firstName }} {{ user.lastName }}
     </div>
-  </li>
-</ul>
-
-<p-button label="cerrar sesion" (onClick)="cerrarsesion()"></p-button>
+    <p-divider></p-divider>
+  </div>
+</div>
