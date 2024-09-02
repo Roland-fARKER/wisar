@@ -26,12 +26,3 @@
     cursor: pointer;
 }
 
-.navchat{
-    display: flex;
-    justify-content: space-between;
-    background-color: #001122;
-    color: #34D399;
-    max-width: 60rem;
-    padding: 10px 20px;
-    align-items: center;
-}

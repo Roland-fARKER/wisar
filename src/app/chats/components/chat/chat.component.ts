@@ -5,6 +5,7 @@ import { User } from '../../../models/User.model';
 import { UserService1 } from '../../services/user.service';
 import { Message } from '../../models/message.entitie';
 import { Timestamp } from 'firebase/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -16,11 +17,12 @@ export class ChatComponent {
   messages: Message[] = [];
   newMessageText: string = '';
 
-  currentUser: User | null = null;;
+  currentUser: User | null = null;
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService,
-    private userService: UserService1
+    private userService: UserService1,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -53,5 +55,9 @@ export class ChatComponent {
         this.newMessageText = '';
       });
     }
+  }
+
+  atras() {
+    this.router.navigate(['chat/users']);
   }
 }

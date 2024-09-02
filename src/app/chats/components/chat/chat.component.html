@@ -1,5 +1,9 @@
 <div class="patGrid">
-  <div class="men"><h3>chat</h3></div>
+  <div class="navchat">
+    <h3>chat</h3>
+    <p-button icon="fa-solid fa-arrow-left"
+    (onClick)="atras()" >  </p-button>
+  </div>
   <p-scrollPanel class="scroll-panel">
     <div *ngFor="let message of messages">
       <div
