@@ -13,8 +13,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'ecomerce',
+    loadChildren: () => import('./ecomerce/ecomerce.module').then(m => m.EcomerceModule),
+  },
+  {
     path: '',
-    redirectTo: 'chat/users',
+    redirectTo: 'ecomerce/home',
     pathMatch: 'full'
   }
 ];

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '../../services/chats.service';
 import { User } from '../../../models/User.model';
@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css',
+  styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent {
   chatId!: string;
   messages: Message[] = [];
   newMessageText: string = '';
-
   currentUser: User | null = null;
+  
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService,
@@ -37,12 +37,14 @@ export class ChatComponent {
     });
   }
 
+  // Cargar mensajes del chat
   loadMessages(): void {
     this.chatService.getMessages(this.chatId).subscribe((messages) => {
       this.messages = messages;
     });
   }
-
+  
+  // Enviar mensaje
   sendMessage(): void {
     if (this.newMessageText.trim() && this.currentUser) {
       const newMessage: Message = {

@@ -4,7 +4,7 @@
     <p-button icon="fa-solid fa-arrow-left"
     (onClick)="atras()" >  </p-button>
   </div>
-  <p-scrollPanel class="scroll-panel">
+  <p-scrollPanel class="scroll-panel" #scrollPanel >
     <div *ngFor="let message of messages">
       <div
         [ngClass]="{

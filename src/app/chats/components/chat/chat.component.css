@@ -3,12 +3,12 @@
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;
   min-height: 100dvh;
-  max-height:100dvh ;
+  max-height: 100dvh;
 }
 
-.men{
-    width: 100%;
-    background-color: darkgrey;
+.men {
+  width: 100%;
+  background-color: darkgrey;
 }
 
 .scroll-panel {
@@ -31,16 +31,14 @@
   max-width: 70%; /* Opcional: establece un ancho máximo */
 }
 
-
 .message-received {
-  background-color: #f8d7da; 
+  background-color: #f8d7da;
   border-radius: 10px;
   padding: 10px;
   margin: 5px;
-  align-self: flex-start; 
-  max-width: 70%; 
+  align-self: flex-start;
+  max-width: 70%;
 }
-
 
 .scroll-panel div {
   display: flex;
@@ -48,22 +46,22 @@
   margin-bottom: 10px;
 }
 
-.mensaje{
-    padding: 0;
-    margin: 3px;
+.mensaje {
+  padding: 0;
+  margin: 3px;
 }
 
-.fott{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
-    padding: 10px 10px;
+.fott {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 10px 10px;
 }
 .fott input {
-    flex: 1; 
-  }
-  
-  .fott p-button {
-    flex-shrink: 0;
-  }
+  flex: 1;
+}
+
+.fott p-button {
+  flex-shrink: 0;
+}

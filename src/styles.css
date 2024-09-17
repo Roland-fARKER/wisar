@@ -3,37 +3,29 @@
 @import "primeng/resources/primeng.css";
 
 :root {
-  --verde: #10b981;
-  --verde2: #a7f3da;
-  --verde3: #059666;
+  --azul: #004451;
+  --naranja: #F97316;
+  --naranja2: #ec802c;
 }
 
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Gotha';
+  src: url('./assets/fonts/GothamOffice-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-image: url(./assets/bg.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 100%;
   height: 100dvh;
 }
 
-.textCent {
-  text-align: center;
+*{
+  font-family: 'Gotha';
 }
 
-.textVerd1 {
-  color: #34d399;
-}
-
-.textVerd2 {
-  color: var(--verde2);
-}
-
-.full-width-button {
-  width: 100%;
-}
 
 @media screen and (min-width: 1024px) {
   .contFull {
@@ -64,6 +56,10 @@ body {
   flex-direction: column;
 }
 
+.textCent{
+  text-align: center;
+} 
+
 .navchat {
   display: flex;
   justify-content: space-between;
@@ -72,4 +68,65 @@ body {
   max-width: 60rem;
   padding: 10px 20px;
   align-items: center;
+}
+
+.p-button {
+  background-color: var(--naranja);
+  border-color: var(--naranja2) ; 
+  color: #ffffff; 
+  display: flex;
+  padding: 10px;
+}
+
+.full-w{
+  width: 100%;
+}
+
+.p-button:focus {
+  outline: 2px solid var(--naranja2) ; 
+  outline-offset: 2px;
+}
+
+input {
+  background-color: #f0f0f0;  
+  border-color: var(--azul); 
+  color: #333;
+}
+
+p-inputGroupAddon{
+  color: var(--azul);
+  border-color: var(--azul);
+}
+
+/* input:focus {
+       
+} */
+
+.p-checkbox-box {
+  border-color: var(--naranja2); /* Cambia el color del borde de la caja */
+  color: var(--naranja); /* Fondo cuando no está seleccionado */
+}
+
+.p-checkbox-box.p-highlight {
+  background-color: #fff; /* Fondo cuando está seleccionado */
+  border-color: var(--naranja); /* Color del borde cuando está seleccionado */
+}
+
+/* Cambia el color del ícono de verificación */
+.p-checkbox-box .p-checkbox-icon {
+  color: var(--naranja); /* Color de la marca de verificación */
+}
+
+
+
+.text-blue{
+  color: var(--azul);
+}
+
+.text-orange{
+  color: var(--naranja);
+}
+
+.text-white{
+  color: #ffffff;
 }

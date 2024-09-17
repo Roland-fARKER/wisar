@@ -1,50 +1,64 @@
-<div class="verticalFull">
-    <app-loader *ngIf="isLoader" ></app-loader>
-    <p-toast></p-toast>
-    <p-card>
-      <form (ngSubmit)="login()" class="LogForm">
-        <h2 class="textCent">Inicio de sesión</h2>
-        <p-inputGroup>
-          <p-inputGroupAddon>
-            <i class="fa-regular fa-at"></i>
-          </p-inputGroupAddon>
-          <input
-            pInputText
-            placeholder="Correo Electrónico"
-            [(ngModel)]="email"
-            name="email"
-          />
-        </p-inputGroup>
-        <p-inputGroup>
-          <p-inputGroupAddon>
-            <i class="fa-solid fa-key"></i>
-          </p-inputGroupAddon>
-          <input
-            pInputText
-            [(ngModel)]="password"
-            name="password"
-            type="password"
-            placeholder="Contraseña"
-            required
-          />
-        </p-inputGroup>
-        <p>Ha olvidado Su contraseña?</p>
-        <div>
-          <p-button
-            class="full-width-button"
-            icon="fa-solid fa-lock"
-            type="submit"
-            label="Iniciar Sesión"
-          ></p-button>
-        </div>
-      </form>
-    </p-card>
+<div class="wrapper">
+  <app-loader *ngIf="isLoader"></app-loader>
+  <p-toast></p-toast>
+
+  <div class="wrap-l">
+    <h1>Bienvenido</h1>
+    <div style="width: 80%">
+      <img src="assets/animated1.svg" />
+    </div>
+    <p class="text-white textCent">
+      Innovación que conecta, éxito que trasciende
+    </p>
   </div>
-  
-  <!-- upload.component.html -->
-  <!-- <input type="file" (change)="uploadFile($event)" />
-  <div *ngIf="uploadPercent | async as percent">Subiendo: {{ percent }}%</div>
-  <div *ngIf="downloadURL">
-    <a [href]="downloadURL" target="_blank">Descargar archivo</a>
-  </div> -->
-  
+  <div class="wrap-r">
+    <img class="web-log" src="assets/logo1.webp" />
+    <form (ngSubmit)="login()" class="LogForm">
+      <h2 class="textCent text-blue">Inicio de sesión</h2>
+
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="fa-regular fa-at"></i>
+        </p-inputGroupAddon>
+        <input
+          pInputText
+          placeholder="Correo Electrónico"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+      </p-inputGroup>
+
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="fa-solid fa-key"></i>
+        </p-inputGroupAddon>
+        <input
+          pInputText
+          [(ngModel)]="password"
+          name="password"
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Contraseña"
+          required
+        />
+      </p-inputGroup>
+
+      <p-checkbox
+        label="Mostrar Contraseña"
+        [(ngModel)]="showPassword"
+        [ngModelOptions]="{ standalone: true }"
+        [binary]="true"
+      ></p-checkbox>
+
+      <p class="text-orange">Ha olvidado su contraseña?</p>
+      <div>
+        <p-button
+          icon="fa-solid fa-lock"
+          type="submit"
+          label="Iniciar Sesión"
+          styleClass="full-w"
+        ></p-button>
+      </div>
+    </form>
+  </div>
+</div>

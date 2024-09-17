@@ -4,7 +4,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth.routing';
-
+import { CheckboxModule } from 'primeng/checkbox';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -13,7 +13,8 @@ import { AuthRoutingModule } from './auth.routing';
   imports: [
     CommonModule,
     SharedModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    CheckboxModule
   ]
 })
 export class AuthModule { }

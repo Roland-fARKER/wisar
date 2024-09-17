@@ -1,0 +1,42 @@
+<nav>
+  <div class="cont">
+    <img src="assets/ilus-logo.png" />
+    <div>
+      <p-inputGroup>
+        <input type="text" pInputText placeholder="Buscar" />
+        <button
+          type="button"
+          pButton
+          icon="fa-solid fa-magnifying-glass"
+        ></button>
+      </p-inputGroup>
+    </div>
+    <ul [ngClass]="{ 'show-menu': menuOpen, 'hide-menu': !menuOpen }">
+      <ng-container *ngFor="let nv of navs" >
+        <li (click)="redirect(nv.route)">
+          <i class="fa-solid" [ngClass]="nv.icon"></i>
+           <span>{{nv.label}}</span>
+        </li>
+      </ng-container>
+    </ul>
+    <div class="icons-cont">
+      <i
+        class="fa-solid fa-cart-shopping icons"
+        pBadge
+        value="0"
+        severity="warning"
+        (click)="op.toggle($event)"
+      ></i>
+      <i
+        class="fa-solid icons"
+        [ngClass]="menuOpen ? 'fa-times' : 'fa-bars'"
+        (click)="toggleMenu()"
+      ></i>
+    </div>
+  </div>
+</nav>
+<p-overlayPanel #op>
+  <h3 class="textCent">Tu carrito Esta vacío</h3>
+  <img class="ilus-car" src="assets/carShopAnimated.svg" />
+  <p class="textCent">Cuando agregues productos los mostraremos aquí,</p>
+</p-overlayPanel>

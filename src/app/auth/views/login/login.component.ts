@@ -4,7 +4,6 @@ import { finalize } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -18,6 +17,7 @@ export class LoginComponent {
   password: string = '';
   uploadPercent: Observable<number | undefined> | undefined = undefined;
   downloadURL: string | undefined;
+  showPassword: boolean = false;
 
   isLoader:boolean = false;
 
@@ -39,7 +39,7 @@ export class LoginComponent {
       .then(() => {
         this.messageService.add({severity:'success', summary:'Éxito', detail: 'Login exitoso'});
         this.isLoader = false;
-        this.router.navigate(['chat/users']);
+        this.router.navigate(['ecomerce/home']);
       })
       .catch(error => {
         console.error('Error en el login:', error);
@@ -53,27 +53,5 @@ export class LoginComponent {
         this.isLoader = false;
         this.messageService.add({severity:'error', summary:'Error', detail: errorMessage});
       });
-  }
-
-  uploadFile(event: any) {
-    const file = event.target.files[0];
-    const filePath = `uploads/${file.name}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
-
-    // Observa el porcentaje de subida
-    this.uploadPercent = task.percentageChanges();
-
-    // Obtén el enlace de descarga cuando el archivo esté disponible
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-            this.downloadURL = url;
-          });
-        })
-      )
-      .subscribe();
   }
 }

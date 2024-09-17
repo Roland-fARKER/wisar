@@ -14,6 +14,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ListboxModule } from 'primeng/listbox';
 import { DividerModule } from 'primeng/divider';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [ LoaderComponent ],
@@ -30,7 +31,8 @@ import { DividerModule } from 'primeng/divider';
     AvatarModule,
     AvatarGroupModule,
     ListboxModule,
-    DividerModule
+    DividerModule,
+    CheckboxModule
   ],
   exports: [
     ButtonModule,
@@ -45,7 +47,8 @@ import { DividerModule } from 'primeng/divider';
     AvatarModule,
     AvatarGroupModule,
     ListboxModule,
-    DividerModule
+    DividerModule,
+    CheckboxModule
   ],
   providers: [ MessageService ]
 })

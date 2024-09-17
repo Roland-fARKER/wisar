@@ -5,6 +5,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'users', pathMatch: 'full' },
   { path: 'users', component: UserListComponent },
   { path: 'chat/:id', component: ChatComponent },
   { path: 'chat-list', component: ChatListComponent },
