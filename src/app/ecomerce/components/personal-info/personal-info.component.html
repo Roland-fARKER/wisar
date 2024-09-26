@@ -1,0 +1,51 @@
+<div class="content">
+  <p-panel *ngIf="CurrentUser" header="Información de usuario">
+    <div class="user-profile">
+      <div class="user-profile-header">
+        <p-avatar
+          *ngIf="CurrentUser.profilePhotoUrl; else noPhoto"
+          [image]="CurrentUser.profilePhotoUrl"
+          styleClass="mr-2"
+          size="large"
+          shape="circle"
+          [style]="{ cursor: 'pointer' }"
+        >
+        </p-avatar>
+
+        <!-- Mostrar la inicial del nombre si no hay foto -->
+        <ng-template #noPhoto>
+          <p-avatar
+            label="{{ CurrentUser.firstName.charAt(0) }}"
+            styleClass="mr-2"
+            size="large"
+            shape="circle"
+            [style]="{
+              cursor: 'pointer',
+              'background-color': '#F97316',
+              color: '#fff'
+            }"
+          >
+          </p-avatar>
+        </ng-template>
+        <div class="user-details">
+          <h3>{{ CurrentUser.firstName }} {{ CurrentUser.lastName }}</h3>
+
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            {{ CurrentUser.departamento }}, {{ CurrentUser.municipio }}
+          </p>
+        </div>
+      </div>
+
+      <div class="personal-info">
+        <h4>Información Personal</h4>
+        <p><strong>Nombres:</strong> {{ CurrentUser.firstName }}</p>
+        <p><strong>Apellidos:</strong> {{ CurrentUser.lastName }}</p>
+        <p><strong>Correo electronico:</strong> {{ CurrentUser.email }}</p>
+        <p><strong>Telefono:</strong> {{CurrentUser.phone}}</p>
+      </div>
+
+      <button pButton label="Editar Info" icon="fa-solid fa-pencil"></button>
+    </div>
+  </p-panel>
+</div>

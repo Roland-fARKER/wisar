@@ -1,0 +1,30 @@
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.user-profile-header {
+  display: flex;
+  align-items: center;
+}
+.user-image {
+  border-radius: 50%;
+  width: 100px;
+  margin-right: 1rem;
+}
+
+.user-details {
+  font-size: 1rem;
+}
+
+.personal-info,
+.address-info {
+  margin-top: 2rem;
+}
+
+
+.location-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

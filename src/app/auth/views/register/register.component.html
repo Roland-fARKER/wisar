@@ -1,48 +1,195 @@
-<div class="verticalFull">
-    <p-toast></p-toast>
-    <p-card>
-      <form (ngSubmit)="onRegister()" class="LogForm" >
-        <h2 class="textCent textVerd1">Registro admin</h2>
-        <p-inputGroup>
-          <p-inputGroupAddon>
-            <i class="fa-regular fa-user"></i>
-          </p-inputGroupAddon>
-          <input
-            pInputText
-            placeholder="Nombre"
-            [(ngModel)]="firstName"
-            name="firstName"
-          />
-        </p-inputGroup>
-        <p-inputGroup>
-          <p-inputGroupAddon>
-            <i class="fa-regular fa-user"></i>
-          </p-inputGroupAddon>
-          <input
-            pInputText
-            placeholder="Apellidos"
-            [(ngModel)]="lastName"
-            name="lastName"
-          />
-        </p-inputGroup>
-       
-        <p-inputGroup>
-          <p-inputGroupAddon>
-            <i class="fa-regular fa-user"></i>
-          </p-inputGroupAddon>
-          <input pInputText type="email" [(ngModel)]="email" name="email" placeholder="Correo Electrónico" required>
-        </p-inputGroup>
-        
-        <p-inputGroup>
-          <p-inputGroupAddon>
-            <i class="fa-regular fa-user"></i>
-          </p-inputGroupAddon>
-          <input pInputText type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
-        </p-inputGroup>
-        <div style="display: flex; gap: 10px; justify-content: space-between;">
-          <p-button type="submit" label="Registrar" icon="fa-solid fa-pencil" ></p-button>
-        <p-button (onClick)="alLogin()" label="Ir al login" icon="fa-solid fa-lock" ></p-button>
+<div class="wrapper">
+  <p-toast></p-toast>
+  <div class="wrap-r">
+    <img class="web-log" src="../../../../assets/logo1.webp" />
+    <form class="RegForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="duble-row">
+        <!-- Nombre -->
+        <div class="field">
+          <p-floatLabel>
+            <input pInputText id="firstName" formControlName="firstName" />
+            <label for="firstName">Nombres</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('firstName')?.invalid &&
+              registerForm.get('firstName')?.touched
+            "
+            severity="error"
+            text="El nombre es requerido"
+          ></p-messages>
         </div>
-      </form>
-    </p-card>
+
+        <!-- Apellido -->
+        <div class="field">
+          <p-floatLabel>
+            <input pInputText id="lastName" formControlName="lastName" />
+            <label for="lastName">Apellidos</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('lastName')?.invalid &&
+              registerForm.get('lastName')?.touched
+            "
+            severity="error"
+            text="El apellido es requerido"
+          ></p-messages>
+        </div>
+      </div>
+
+      <div class="duble-row">
+        <!-- Email -->
+        <div class="field">
+          <p-floatLabel>
+            <input pInputText id="email" formControlName="email" type="email" />
+            <label for="email">Email</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+            "
+            severity="error"
+            text="El correo es requerido y debe ser válido"
+          ></p-messages>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <p-floatLabel>
+            <input
+              pInputText
+              id="password"
+              formControlName="password"
+              type="password"
+            />
+            <label for="password">Contraseña</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('password')?.invalid &&
+              registerForm.get('password')?.touched
+            "
+            severity="error"
+            text="La contraseña es requerida y debe tener al menos 6 caracteres"
+          ></p-messages>
+        </div>
+      </div>
+
+      <div class="duble-row-2">
+        <!-- Departamento -->
+        <div class="field">
+          <p-floatLabel>
+            <p-dropdown
+              [options]="departamentos"
+              formControlName="departamento"
+              placeholder="Departamento"
+              [optionLabel]="'departamento'"
+              [optionValue]="'departamento'"
+            ></p-dropdown>
+            <label for="departamento">Departamento</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('departamento')?.invalid &&
+              registerForm.get('departamento')?.touched
+            "
+            severity="error"
+            text="El departamento es requerido"
+          ></p-messages>
+        </div>
+
+        <!-- Municipio -->
+        <div class="field">
+          <p-floatLabel>
+            <p-dropdown
+              [options]="municipios"
+              formControlName="municipio"
+              placeholder="Municipio"
+              [optionLabel]="'label'"
+              [optionValue]="'value'"
+            ></p-dropdown>
+            <label for="municipio">Municipio</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('municipio')?.invalid &&
+              registerForm.get('municipio')?.touched
+            "
+            severity="error"
+            text="El municipio es requerido"
+          ></p-messages>
+        </div>
+      </div>
+
+      <div class="duble-row">
+        <!-- Teléfono -->
+        <div class="field">
+          <p-floatLabel>
+            <input pInputText id="phone" formControlName="phone" />
+            <label for="phone">Teléfono</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('phone')?.invalid &&
+              registerForm.get('phone')?.touched
+            "
+            severity="error"
+            text="El teléfono es requerido y debe ser numérico"
+          ></p-messages>
+        </div>
+
+        <!-- Dirección -->
+        <div class="field">
+          <p-floatLabel>
+            <input pInputText id="direccion" formControlName="direccion" />
+            <label for="direccion">Dirección</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('direccion')?.invalid &&
+              registerForm.get('direccion')?.touched
+            "
+            severity="error"
+            text="La dirección es requerida"
+          ></p-messages>
+        </div>
+      </div>
+
+      <div class="duble-row">
+        <!-- Género -->
+        <div class="field">
+          <p-floatLabel>
+            <p-dropdown
+              styleClass="full-w"
+              [options]="generos"
+              formControlName="genero"
+              placeholder="Género"
+            ></p-dropdown>
+            <label for="genero">Género</label>
+          </p-floatLabel>
+          <p-messages
+            *ngIf="
+              registerForm.get('genero')?.invalid &&
+              registerForm.get('genero')?.touched
+            "
+            severity="error"
+            text="El género es requerido"
+          ></p-messages>
+        </div>
+      </div>
+
+      <!-- Botón de registro -->
+      <p-button styleClass="full-w" type="submit" label="Registrarme"></p-button>
+    </form>
   </div>
+  <div class="wrap-l">
+    <h2>Impulsa tu negocio con nosotros</h2>
+    <div style="width: 80%">
+      <img src="assets/animated1.svg" />
+    </div>
+    <p class="text-white textCent">
+      Innovación que conecta, éxito que trasciende
+    </p>
+  </div>
+</div>

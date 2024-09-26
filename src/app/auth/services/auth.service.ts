@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
 import { Rol } from '../../models/Rol.model';
+import { createUser, User } from '../../models/User.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,33 +15,44 @@ export class AuthService {
   ) { }
 
   // Registro de usuario
-  async register(
-    email: string,
-    password: string,
-    firstName: string,
-    lastName: string
-  ) {
-    const urol: Rol = { id: 'koDJdzetaHAVk41XuiM5', name: 'user', state: true }
+  async register(userData: createUser): Promise<User | null> {
+    const urol: Rol = { id: 'koDJdzetaHAVk41XuiM5', name: 'user', state: true };
+  
+    // Validaciones básicas
+    if (!userData.email || !userData.password || !userData.firstName || !userData.lastName) {
+      throw new Error('Faltan campos requeridos para el registro');
+    }
+  
     try {
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(
-        email,
-        password
+        userData.email,
+        userData.password
       );
       const uid = userCredential.user?.uid;
+  
       if (uid) {
-        await this.firestore.collection('users').doc(uid).set({
+        const user: User = {
           uid: uid,
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
+          email: userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
           profilePhotoUrl: null,
-          rol: urol
-        });
+          rol: urol,
+          phone: userData.phone,
+          departamento: userData.departamento,
+          municipio: userData.municipio,
+          direccion: userData.direccion,
+          genero: userData.genero
+        };
+  
+        await this.firestore.collection('users').doc(uid).set(user);
+        return user;
       }
-      return userCredential;
+  
+      return null; 
     } catch (error) {
       console.error('Error en el registro:', error);
-      throw error;
+      throw error; 
     }
   }
 

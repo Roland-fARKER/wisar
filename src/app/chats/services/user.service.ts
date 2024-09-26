@@ -41,6 +41,10 @@ export class UserService1 {
     );
   }
 
+  async updateUserShopId(userId: string, shopId: string) {
+    await this.firestore.collection('users').doc(userId).update({ shopId });
+  }
+
   updateProfilePhotoUrl(uid: string, newPhotoUrl: string): Promise<void> {
     return this.firestore.doc<User>(`users/${uid}`).update({ profilePhotoUrl: newPhotoUrl });
   }

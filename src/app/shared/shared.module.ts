@@ -15,6 +15,13 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ListboxModule } from 'primeng/listbox';
 import { DividerModule } from 'primeng/divider';
 import { CheckboxModule } from 'primeng/checkbox';
+import { MessagesModule } from 'primeng/messages';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { StepperModule } from 'primeng/stepper';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [ LoaderComponent ],
@@ -32,7 +39,14 @@ import { CheckboxModule } from 'primeng/checkbox';
     AvatarGroupModule,
     ListboxModule,
     DividerModule,
-    CheckboxModule
+    CheckboxModule,
+    MessagesModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    StepperModule,
+    FloatLabelModule,
+    FileUploadModule,
+    HttpClientModule
   ],
   exports: [
     ButtonModule,
@@ -48,7 +62,14 @@ import { CheckboxModule } from 'primeng/checkbox';
     AvatarGroupModule,
     ListboxModule,
     DividerModule,
-    CheckboxModule
+    CheckboxModule,
+    MessagesModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    StepperModule,
+    FloatLabelModule,
+    FileUploadModule,
+    HttpClientModule
   ],
   providers: [ MessageService ]
 })

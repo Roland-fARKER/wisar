@@ -2,59 +2,93 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { departamentos } from '../../../ecomerce/utils/Departamentos';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
-  providers: [MessageService]
+  styleUrls: ['./register.component.css'],
+  providers: [MessageService],
 })
 export class RegisterComponent {
-  email: string = '';
-  password: string = '';
-  firstName: string = '';
-  lastName: string = '';
+  registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private messageService: MessageService, private router: Router) { }
+  departamentos = departamentos;
+  municipios: { label: string; value: string }[] = [];
 
-  onRegister() {
-    if (this.email && this.password && this.firstName && this.lastName) {
-      this.authService.register(this.email, this.password, this.firstName, this.lastName)
-        .then(() => {
-          console.log('Registro exitoso');
+  generos = ['Masculino', 'Femenino', 'Otro', 'Prefiero no decirlo'];
+
+  constructor(
+    private fb: FormBuilder,
+    private messageService: MessageService,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      departamento: ['', Validators.required],
+      municipio: ['', Validators.required],
+      direccion: ['', Validators.required],
+      genero: ['', Validators.required],
+    });
+
+    this.registerForm
+      .get('departamento')
+      ?.valueChanges.subscribe((departamento) => {
+        const selectedDepartamento = this.departamentos.find(
+          (d) => d.departamento === departamento
+        );
+        this.municipios = selectedDepartamento
+          ? selectedDepartamento.municipios.map((m) => ({ label: m, value: m }))
+          : [];
+        this.registerForm.get('municipio')?.setValue('');
+      });
+  }
+
+  onSubmit() {
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value;
+
+      this.authService
+        .register(formData)
+        .then((response) => {
           this.messageService.add({
             severity: 'success',
-            summary: 'Exito',
-            detail: 'Registro exitoso, vallamos al login'
+            summary: 'Registro exitoso',
+            detail: 'El usuario ha sido registrado exitosamente.',
           });
-          this.resetInputs()
+          this.router.navigate(['auth/login']);
         })
-        .catch(error => {
-          console.error('Error en el registro:', error);
+        .catch((error) => {
           this.messageService.add({
             severity: 'error',
-            summary: 'Ocurrio un error',
-            detail: 'Ha ocurrido un error desconocido'
+            summary: 'Error en el registro',
+            detail: 'Ocurrió un error al intentar registrar al usuario.',
           });
         });
     } else {
-      console.error('Por favor, completa todos los campos');
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Ocurrio un error',
-        detail: 'Necesita completar todos los campos'
-      });
+      this.checkFormValidity();
     }
   }
 
-  resetInputs() {
-    this.email = ''
-    this.firstName = ''
-    this.email = ''
-    this.password = ''
-  }
+  checkFormValidity() {
+    Object.keys(this.registerForm.controls).forEach((key) => {
+      const control = this.registerForm.get(key);
+      if (control?.invalid) {
+        console.log(`Campo inválido: ${key}`);
+        console.log(control.errors); // Muestra los errores específicos de ese control
+      }
+    });
 
-  alLogin() {
-    this.router.navigate(['/auth/login']);
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Por favor complete todos los campos requeridos correctamente.',
+    });
   }
 }

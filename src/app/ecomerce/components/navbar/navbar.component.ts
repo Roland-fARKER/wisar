@@ -20,9 +20,9 @@ export class NavbarComponent {
   }
 
   navs: MenuIt[] = [
-    { label: 'Inicio', icon: 'fa-house', route: '/eco', },
+    { label: 'Inicio', icon: 'fa-house', route: '/ecomerce', },
     { label: 'Comunidad', icon: 'fa-users', route: '/ecomerce', },
-    { label: 'Perfil', icon: 'fa-user', route: '/ecomerce', },
+    { label: 'Perfil', icon: 'fa-user', route: '/ecomerce/profile', },
     { label: 'Contacto', icon: 'fa-phone', route: '/ecomerce', },
   ];
 

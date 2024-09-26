@@ -1,0 +1,138 @@
+.wrap-cont {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-shop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.cont-pic {
+  width: 100%;
+  max-width: 45rem;
+}
+
+.no-shop h1 {
+  text-align: center;
+  color: var(--azul);
+}
+
+.shop-container {
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.shop-banner {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  color: white;
+}
+
+.shop-logo img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.shop-name h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.shop-description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.shop-info {
+  padding: 20px;
+}
+
+.shop-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.shop-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.shop-info ul li {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.shop-links {
+  padding: 20px;
+}
+
+.shop-links h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.social-links li a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.social-links li a i {
+  margin-right: 8px;
+}
+
+.facebook {
+  color: #3b5998;
+}
+
+.instagram {
+  color: #e4405f;
+}
+
+.whatsapp {
+  color: #25d366;
+}
+
+.no-shop-message {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.no-shop-message h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.no-shop-message p {
+  font-size: 1.2rem;
+  color: #666;
+}

@@ -1,0 +1,371 @@
+<div class="wrap-f" [formGroup]="createShopForm">
+  <p-toast></p-toast>
+  <h3 class="textCent">Registra tu tienda en pocos pasos</h3>
+  <div class="stp-cont">
+    <p-stepper [(activeStep)]="active">
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <div class="bgTrasparent" (click)="onClick.emit()">
+            <span
+              [ngClass]="{
+                act1: index <= active,
+                act2: index > active
+              }"
+            >
+              <i class="fa-solid fa-user"></i>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content" let-nextCallback="nextCallback">
+          <h3 class="textCent">
+            <i class="fa-solid fa-user"></i> Completa tu información de usuario.
+          </h3>
+
+          <div class="userInfo" *ngIf="CurrentUser">
+            <p><strong>Nombres:</strong> {{ CurrentUser.firstName }}</p>
+            <p><strong>Apellidos:</strong> {{ CurrentUser.lastName }}</p>
+            <p><strong>Correo electronico:</strong> {{ CurrentUser.email }}</p>
+            <p><strong>Telefono:</strong> {{ CurrentUser.phone }}</p>
+            <p><strong>Dirección:</strong> {{ CurrentUser.direccion }}</p>
+            <p>
+              <strong
+                >Se necesita su N° de identidad para completar el
+                registro.</strong
+              >
+            </p>
+            <p-floatLabel>
+              <input pInputText id="username" />
+              <label for="username">Número de cedula</label>
+            </p-floatLabel>
+          </div>
+
+          <div class="foot-st">
+            <p-button
+              (onClick)="nextCallback.emit()"
+              label="Siguiente"
+              icon="fa-solid fa-arrow-right"
+              iconPos="right"
+            />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <div class="bgTrasparent" (click)="onClick.emit()">
+            <span
+              [ngClass]="{
+                act1: index <= active,
+                act2: index > active
+              }"
+            >
+              <i class="fa-solid fa-shop"></i>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+        >
+          <h3 class="textCent">
+            <i class="fa-solid fa-pencil"></i> Informacion general del la
+            tienda.
+          </h3>
+
+          <div class="row">
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-solid fa-shop"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="Nombre de la tienda"
+                formControlName="name"
+                required
+              />
+            </p-inputGroup>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-solid fa-pencil"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="Breve Descripción"
+                formControlName="description"
+                required
+              />
+            </p-inputGroup>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-solid fa-pencil"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="Lema (opcional)"
+                formControlName="lema"
+                required
+              />
+            </p-inputGroup>
+          </div>
+          <div class="row">
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-brands fa-whatsapp"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="Número de whatsapp"
+                formControlName="whatsappNumber"
+                required
+              />
+            </p-inputGroup>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-brands fa-facebook"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="Link facebook (Opcional)"
+                formControlName="facebookLink"
+                required
+              />
+            </p-inputGroup>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-brands fa-instagram"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="Link Instagram (opcional)"
+                formControlName="instagramLink"
+                required
+              />
+            </p-inputGroup>
+          </div>
+
+          <div class="row">
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-solid fa-phone"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="Telefono(opcional)"
+                formControlName="phoneNumber"
+                required
+              />
+            </p-inputGroup>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-solid fa-at"></i>
+              </p-inputGroupAddon>
+              <input
+                pInputText
+                placeholder="email"
+                formControlName="email"
+                required
+              />
+            </p-inputGroup>
+          </div>
+
+          <div class="foot-st">
+            <p-button
+              (onClick)="prevCallback.emit()"
+              label="Regresar"
+              severity="secondary"
+              icon="fa-solid fa-arrow-left"
+            />
+            <p-button
+              (onClick)="nextCallback.emit()"
+              label="Siguiente"
+              icon="fa-solid fa-arrow-right"
+              iconPos="right"
+            />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <div class="bgTrasparent" (click)="onClick.emit()">
+            <span
+              [ngClass]="{
+                act1: index <= active,
+                act2: index > active
+              }"
+            >
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+        >
+          <h3 class="textCent">
+            <i class="fa-solid fa-location-dot"></i> Informacion geográfica de
+            la tienda.
+          </h3>
+
+          <div class="row">
+            <p-dropdown
+              [options]="depart"
+              [(ngModel)]="selectedDepartment"
+              optionLabel="departamento"
+              (onChange)="onDepartmentChange($event)"
+              placeholder="Selecciona un departamento"
+              [formControlName]="'department'"
+            >
+            </p-dropdown>
+
+            <p-dropdown
+              [options]="municipios"
+              [(ngModel)]="selectedMunicipio"
+              placeholder="Selecciona un municipio"
+              [formControlName]="'municipio'"
+              [disabled]="!municipios.length"
+            >
+            </p-dropdown>
+          </div>
+
+          <p-inputGroup>
+            <p-inputGroupAddon>
+              <i class="fa-solid fa-location-dot"></i>
+            </p-inputGroupAddon>
+            <input
+              pInputText
+              placeholder="Dirección"
+              formControlName="address"
+              required
+            />
+          </p-inputGroup>
+          <div class="foot-st">
+            <p-button
+              (onClick)="prevCallback.emit()"
+              label="Regresar"
+              severity="secondary"
+              icon="fa-solid fa-arrow-left"
+            />
+            <p-button
+              (onClick)="nextCallback.emit()"
+              label="Siguiente"
+              icon="fa-solid fa-arrow-right"
+              iconPos="right"
+            />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <div class="bgTrasparent" (click)="onClick.emit()">
+            <span
+              [ngClass]="{
+                act1: index <= active,
+                act2: index > active
+              }"
+            >
+              <i class="fa-solid fa-tags"></i>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+        >
+          <h3 class="textCent">
+            <i class="fa-solid fa-tag"></i> Vamos a selecciona Categorias.
+          </h3>
+
+          <div class="cat-wrap">
+            <ng-container *ngFor="let cat of categories">
+              <div class="ct">
+                <p>{{ cat.name }}</p>
+                <input
+                  type="checkbox"
+                  [value]="cat.name"
+                  (change)="onCategoryChange($event)"
+                />
+              </div>
+            </ng-container>
+          </div>
+          <hr />
+
+          <div class="foot-st">
+            <p-button
+              (onClick)="prevCallback.emit()"
+              label="Regresar"
+              severity="secondary"
+              icon="fa-solid fa-arrow-left"
+            />
+            <p-button
+              (onClick)="nextCallback.emit()"
+              label="Siguiente"
+              icon="fa-solid fa-arrow-right"
+              iconPos="right"
+            />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <div class="bgTrasparent" (click)="onClick.emit()">
+            <span
+              [ngClass]="{
+                act1: index <= active,
+                act2: index > active
+              }"
+            >
+              <i class="fa-regular fa-image"></i>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+        >
+          <h3 class="textCent">
+            <i class="fa-regular fa-image"></i> Vamos a seleccionar foto de
+            perfil de la tienda y foto de portada.
+          </h3>
+
+          <div class="file-upload-container">
+            <h3>Subir imágenes de la tienda</h3>
+
+            <label for="logoUpload">Subir logo de la tienda</label>
+            <input
+              type="file"
+              (change)="uploadFile($event, 'logoUrl')"
+              id="logoUpload"
+            />
+
+            <label for="bannerUpload">Subir imagen de portada</label>
+            <input
+              type="file"
+              (change)="uploadFile($event, 'bannerUrl')"
+              id="bannerUpload"
+            />
+          </div>
+
+          <div class="foot-st">
+            <p-button
+              (onClick)="prevCallback.emit()"
+              label="Regresar"
+              severity="secondary"
+              icon="fa-solid fa-arrow-left"
+            />
+            <p-button
+              (onClick)="onSubmit()"
+              label="Listo"
+              icon="fa-solid fa-check"
+              iconPos="right"
+            />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+    </p-stepper>
+  </div>
+</div>
