@@ -1,26 +1,29 @@
-<app-navbar></app-navbar>
-<div class="layout-wrapper">
-  <div class="sidebar">
-    <div style="margin-bottom: 30px;">
-      <img style="width: 200px;" src="../../../../assets/logvar.png" />
+<div class="layout-p">
+  <app-navbar></app-navbar>
+  <div class="layout-wrapper">
+    <div class="sidebar">
+      <div style="margin-bottom: 30px">
+        <img style="width: 200px" src="../../../../assets/logvar.png" />
+      </div>
+
+      <ng-container *ngFor="let opt of menuOptions">
+        <div class="item-menu" (click)="redirigir(opt.routerLink)">
+          <i class="fa-solid" [ngClass]="opt.icon"></i>
+          <span>{{ opt.label }} </span>
+        </div>
+      </ng-container>
     </div>
-    
-    <ng-container *ngFor="let opt of menuOptions">
-      <div class="item-menu" (click)="redirigir(opt.routerLink)">
-        <i class="fa-solid" [ngClass]="opt.icon"></i>
-        <span>{{ opt.label }} </span>
-      </div>
-    </ng-container>
+    <div style="width: 100%">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="bottom-nav">
+      <ng-container *ngFor="let opt of menuOptions">
+        <div class="item-menu" (click)="redirigir(opt.routerLink)">
+          <i class="fa-solid" [ngClass]="opt.icon"></i>
+          <span>{{ opt.label }} </span>
+        </div>
+      </ng-container>
+    </div>
   </div>
-  <div style="width: 100%;">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="bottom-nav">
-    <ng-container *ngFor="let opt of menuOptions">
-      <div class="item-menu" (click)="redirigir(opt.routerLink)">
-        <i class="fa-solid" [ngClass]="opt.icon"></i>
-        <span>{{ opt.label }} </span>
-      </div>
-    </ng-container>
-  </div>
+  <app-footer></app-footer>
 </div>

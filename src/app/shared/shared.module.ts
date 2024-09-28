@@ -22,6 +22,7 @@ import { StepperModule } from 'primeng/stepper';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [ LoaderComponent ],
@@ -46,7 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     StepperModule,
     FloatLabelModule,
     FileUploadModule,
-    HttpClientModule
+    DialogModule
   ],
   exports: [
     ButtonModule,
@@ -69,7 +70,8 @@ import { HttpClientModule } from '@angular/common/http';
     StepperModule,
     FloatLabelModule,
     FileUploadModule,
-    HttpClientModule
+    HttpClientModule,
+    DialogModule
   ],
   providers: [ MessageService ]
 })

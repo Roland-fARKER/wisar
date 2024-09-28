@@ -11,4 +11,5 @@ export interface Product {
   discount?: number;
   discountPrice?: number;
   discountDesc?: number;
+  nombreTienda: string;
 }

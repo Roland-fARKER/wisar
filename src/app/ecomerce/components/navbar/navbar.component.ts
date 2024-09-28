@@ -12,21 +12,77 @@ interface MenuIt {
 })
 export class NavbarComponent {
   menuOpen = false;
+  cart: any[] = [];
+  animateCart: boolean = false;
+  eventListener: any;
+  badgeValue: number = 0;
 
   constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.loadCart();
+
+    // Escuchar el evento global 'cart-updated'
+    this.eventListener = (event: CustomEvent) => {
+      this.loadCart();
+      this.triggerAnimation();
+    };
+    window.addEventListener('cart-updated', this.eventListener);
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
   navs: MenuIt[] = [
-    { label: 'Inicio', icon: 'fa-house', route: '/ecomerce', },
-    { label: 'Comunidad', icon: 'fa-users', route: '/ecomerce', },
-    { label: 'Perfil', icon: 'fa-user', route: '/ecomerce/profile', },
-    { label: 'Contacto', icon: 'fa-phone', route: '/ecomerce', },
+    { label: 'Inicio', icon: 'fa-house', route: '/ecomerce' },
+    { label: 'Comunidad', icon: 'fa-users', route: '/ecomerce' },
+    { label: 'Perfil', icon: 'fa-user', route: '/ecomerce/profile' },
+    { label: 'Contacto', icon: 'fa-phone', route: '/ecomerce' },
   ];
 
   redirect(rute: string) {
     this.router.navigateByUrl(rute);
+  }
+
+  loadCart() {
+    this.cart = JSON.parse(localStorage.getItem('cart') ?? '[]');
+    this.badgeValue = this.cart.length;
+  }
+
+  triggerAnimation() {
+    this.animateCart = true;
+    setTimeout(() => {
+      this.animateCart = false;
+    }, 1000); // Dura 1 segundo la animación
+  }
+
+  get groupedCart() {
+    const grouped = new Map<string, { item: any; quantity: number }>();
+
+    this.cart.forEach((item) => {
+      if (grouped.has(item.id)) {
+        // Si el producto ya está en el mapa, incrementa su cantidad
+        grouped.get(item.id)!.quantity++;
+      } else {
+        // Si no, agrega el producto al mapa con cantidad 1
+        grouped.set(item.id, { item, quantity: 1 });
+      }
+    });
+
+    return Array.from(grouped.values());
+  }
+
+  removeItem(itemId: string) {
+    console.log("Eliminando producto con ID:", itemId); // Para depuración
+    this.cart = this.cart.filter(item => item.id !== itemId);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.badgeValue = this.cart.length;
+  }
+
+  get total() {
+    return this.groupedCart.reduce((sum, groupedItem) => {
+      return sum + (groupedItem.item.price * groupedItem.quantity);
+    }, 0);
   }
 }

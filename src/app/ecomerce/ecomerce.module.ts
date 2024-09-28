@@ -17,6 +17,15 @@ import { PersonalInfoComponent } from './components/personal-info/personal-info.
 import { MitiendaComponent } from './components/mitienda/mitienda.component';
 import { CreateShopComponent } from './components/create-shop/create-shop.component';
 import { MyproductsComponent } from './components/myproducts/myproducts.component';
+import { ProductCartComponent } from './components/product-cart/product-cart.component';
+import { CarouselModule } from 'primeng/carousel';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { MyCouponsComponent } from './components/my-coupons/my-coupons.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CalendarModule } from 'primeng/calendar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
@@ -30,7 +39,10 @@ import { MyproductsComponent } from './components/myproducts/myproducts.componen
     PersonalInfoComponent,
     MitiendaComponent,
     CreateShopComponent,
-    MyproductsComponent
+    MyproductsComponent,
+    ProductCartComponent,
+    TruncatePipe,
+    MyCouponsComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +51,13 @@ import { MyproductsComponent } from './components/myproducts/myproducts.componen
     OverlayPanelModule,
     SharedModule,
     PanelModule,
-    RouterModule
+    RouterModule,
+    CarouselModule,
+    InputNumberModule,
+    CheckboxModule,
+    CalendarModule,
+    FileUploadModule,
+    SelectButtonModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

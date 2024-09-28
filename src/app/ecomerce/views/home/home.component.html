@@ -1,6 +1,17 @@
 <app-navbar></app-navbar>
 <app-header></app-header>
-<p>home works!</p>
-<div class="contend">
+
+<div class="contai-1">
+  <div class="advanced-search">
+    <h3><i class="fa-solid fa-tags"></i> Categorías.</h3>
+    <div class="wrap-cat">
+      <ng-container *ngFor="let cat of categories">
+        <div class="cat-c">
+          <p>{{ cat.name }}</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
   <app-productlist></app-productlist>
 </div>
+<app-footer></app-footer>

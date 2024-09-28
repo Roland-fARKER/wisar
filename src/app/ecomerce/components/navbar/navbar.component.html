@@ -12,24 +12,24 @@
       </p-inputGroup>
     </div>
     <ul [ngClass]="{ 'show-menu': menuOpen, 'hide-menu': !menuOpen }">
-      <ng-container *ngFor="let nv of navs" >
+      <ng-container *ngFor="let nv of navs">
         <li (click)="redirect(nv.route)">
           <i class="fa-solid" [ngClass]="nv.icon"></i>
-           <span>{{nv.label}}</span>
+          <span>{{ nv.label }}</span>
         </li>
       </ng-container>
-      <li >
-       
-         <span>Cerrar Sesión</span>
+      <li>
+        <span>Cerrar Sesión</span>
       </li>
     </ul>
     <div class="icons-cont">
       <i
         class="fa-solid fa-cart-shopping icons"
         pBadge
-        value="0"
+        [value]="badgeValue"
         severity="warning"
         (click)="op.toggle($event)"
+        [class.animate]="animateCart"
       ></i>
       <i
         class="fa-solid icons"
@@ -40,7 +40,32 @@
   </div>
 </nav>
 <p-overlayPanel #op>
-  <h3 class="textCent">Tu carrito Esta vacío</h3>
-  <img class="ilus-car" src="assets/carShopAnimated.svg" />
-  <p class="textCent">Cuando agregues productos los mostraremos aquí,</p>
+  <div *ngIf="!cart.length">
+    <h3 class="textCent">Tu carrito Esta vacío</h3>
+    <img class="ilus-car" src="assets/carShopAnimated.svg" />
+    <p class="textCent">Cuando agregues productos los mostraremos aquí,</p>
+  </div>
+  <div *ngIf="cart.length" >
+    <ng-container>
+      <div class="cart-item" *ngFor="let groupedItem of groupedCart">
+        <div class="img-cont">
+          <img [src]="groupedItem.item.imageUrl" alt="{{ groupedItem.item.name }}" />
+        </div>
+        <div class="info-cont">
+          <p class="namep">{{ groupedItem.item.name }}</p>
+          <p>C$ {{ groupedItem.item.price }}</p>
+          <p>Cantidad: {{ groupedItem.quantity }}</p>
+        </div>
+        <div class="action-cont">
+          <p-button icon="fa-solid fa-trash" (onClick)="removeItem(groupedItem.item.id)" [rounded]="true" [text]="true" />
+        </div>
+      </div>
+      
+      <div class="total">
+        <p>Total: C$ {{ total }}</p>
+
+      </div>
+      
+    </ng-container>
+  </div>
 </p-overlayPanel>

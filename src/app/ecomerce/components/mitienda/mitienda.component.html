@@ -1,66 +1,36 @@
 <div class="wrap-cont">
-  <br/>
-  <br/>
-  <div class="shop-container" *ngIf="shop">
-    <div
-      class="shop-banner"
-      [ngStyle]="{ 'background-image': 'url(' + shop.bannerUrl + ')' }"
-    >
-      <div class="shop-logo">
-        <img [src]="shop.logoUrl" alt="{{ shop.name }} Logo" />
+  <div *ngIf="shop" class="store">
+    <div class="header">
+      <div class="banner">
+        <img [src]="shop.bannerUrl" />
       </div>
-      <div class="shop-name">
-        <h1>{{ shop.name }}</h1>
-        <p class="shop-description">{{ shop.description }}</p>
+      <div class="profile">
+        <img [src]="shop.logoUrl" />
       </div>
-    </div>
+      <div class="info">
+        <h1><i class="fa-solid fa-shop"></i> {{ shop.name }} <i class="fa-solid fa-certificate"></i></h1>
+        <p><i class="fa-solid fa-pencil"></i> {{ shop.description }}</p>
+        <p><i class="fa-solid fa-location-dot"></i> {{ shop.address }}</p>
+        <p><i class="fa-solid fa-phone"></i> {{ shop.phoneNumber }}</p>
+      </div>
 
-    <div class="shop-info">
-      <h2>Información de la tienda</h2>
-      <ul>
-        <li>
-          <strong>Dirección:</strong> {{ shop.address || "No disponible" }}
-        </li>
-        <li>
-          <strong>Municipio:</strong> {{ shop.municipio || "No disponible" }}
-        </li>
-        <li>
-          <strong>Departamento:</strong>
-          {{ shop.department || "No disponible" }}
-        </li>
-        <li>
-          <strong>Teléfono:</strong> {{ shop.phoneNumber || "No disponible" }}
-        </li>
-        <li><strong>Email:</strong> {{ shop.email || "No disponible" }}</li>
-      </ul>
-    </div>
-
-    <div
-      class="shop-links"
-      *ngIf="shop.facebookLInk || shop.instagramLink || shop.whatsappNumber"
-    >
-      <h3>Redes Sociales</h3>
-      <ul class="social-links">
-        <li *ngIf="shop.facebookLInk">
-          <a [href]="shop.facebookLInk" target="_blank" class="facebook">
-            <i class="fa fa-facebook"></i> Facebook
-          </a>
-        </li>
-        <li *ngIf="shop.instagramLink">
-          <a [href]="shop.instagramLink" target="_blank" class="instagram">
-            <i class="fa fa-instagram"></i> Instagram
-          </a>
-        </li>
-        <li *ngIf="shop.whatsappNumber">
-          <a
-            [href]="'https://wa.me/' + shop.whatsappNumber"
-            target="_blank"
-            class="whatsapp"
-          >
-            <i class="fa fa-whatsapp"></i> WhatsApp
-          </a>
-        </li>
-      </ul>
+      <div class="social">
+        <div>
+          <i class="fa-brands fa-facebook"></i>
+        </div>
+        <div>
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <div>
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+      </div>
+      <h2>Productos de la tienda.</h2>
+      <div class="g-1">
+        <ng-container *ngFor="let prod of productsWinter" >
+          <app-product-cart [product]="prod" ></app-product-cart>
+        </ng-container>
+      </div>
     </div>
   </div>
 

@@ -1,5 +1,223 @@
-<div  class="wrap">
-    <div class="no-product" >  
-        <h2>No hay productos aún</h2>   
-    </div>
+<div class="wrap">
+  <div class="header">
+    <h3><i class="fa-solid fa-box"></i> Mis productos</h3>
+    <p-button
+      icon="fa-solid fa-plus"
+      (onClick)="showDialog()"
+      label="agregar producto"
+    ></p-button>
+  </div>
+  <div class="no-product" *ngIf="!products.length">
+    <h2>No hay productos aún</h2>
+    <img src="assets/box1.svg" />
+  </div>
+  <div class="prod">
+    <ng-container *ngFor="let prod of products">
+      <div class="prod-wrap">
+        <div class="img-cont">
+          <img [src]="prod.imageUrl" alt="{{ prod.name }}" />
+        </div>
+        <div class="info-cont">
+          <p class="namep">{{ prod.name }}</p>
+          <p>C$ {{ prod.price }}</p>
+          <p>Cantidad: {{ prod.stock }}</p>
+        </div>
+        <div class="action-cont">
+          <div>
+            <i class="fa-solid fa-pencil"></i>
+          </div>
+          <div>
+            <i class="fa-solid fa-trash"></i>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form class="for" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <!-- Nombre del Producto -->
+    <div class="op">
+      <div class="p-field">
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="fa-solid fa-tag"></i>
+          </p-inputGroupAddon>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+            placeholder="Nombre del Producto"
+          />
+        </p-inputGroup>
+        <div
+          *ngIf="
+            productForm.get('name')?.invalid && productForm.get('name')?.touched
+          "
+        >
+          El nombre es requerido.
+        </div>
+      </div>
+
+      <!-- Descripción del Producto -->
+      <div class="p-field">
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="fa-solid fa-align-left"></i>
+          </p-inputGroupAddon>
+          <input
+            id="description"
+            type="text"
+            pInputText
+            formControlName="description"
+            placeholder="Descripción del Producto"
+          />
+        </p-inputGroup>
+        <div
+          *ngIf="
+            productForm.get('description')?.invalid &&
+            productForm.get('description')?.touched
+          "
+        >
+          La descripción es requerida.
+        </div>
+      </div>
+    </div>
+
+    <!-- Precio y Stock -->
+    <div class="op">
+      <div class="p-field">
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="fa-solid fa-dollar-sign"></i>
+          </p-inputGroupAddon>
+          <input
+            id="price"
+            type="number"
+            pInputText
+            formControlName="price"
+            placeholder="Precio"
+          />
+        </p-inputGroup>
+        <div
+          *ngIf="
+            productForm.get('price')?.invalid &&
+            productForm.get('price')?.touched
+          "
+        >
+          El precio es requerido.
+        </div>
+      </div>
+
+      <div class="p-field">
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="fa-solid fa-box"></i>
+          </p-inputGroupAddon>
+          <input
+            id="stock"
+            type="number"
+            pInputText
+            formControlName="stock"
+            placeholder="Stock"
+          />
+        </p-inputGroup>
+        <div
+          *ngIf="
+            productForm.get('stock')?.invalid &&
+            productForm.get('stock')?.touched
+          "
+        >
+          El stock es requerido.
+        </div>
+      </div>
+    </div>
+
+    <div class="op">
+      <div class="p-field">
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="fa-solid fa-percent"></i>
+          </p-inputGroupAddon>
+          <input
+            id="discount"
+            type="number"
+            pInputText
+            formControlName="discount"
+            placeholder="Descuento (%)"
+          />
+        </p-inputGroup>
+      </div>
+
+      <div class="p-field">
+        <p-inputGroup>
+          <p-inputGroupAddon>
+            <i class="fa-solid fa-dollar-sign"></i>
+          </p-inputGroupAddon>
+          <input
+            id="discountPrice"
+            type="number"
+            pInputText
+            formControlName="discountPrice"
+            placeholder="Precio con Descuento"
+          />
+        </p-inputGroup>
+      </div>
+    </div>
+
+    <!-- Subida de imagen -->
+    <div class="p-field">
+      <p-fileUpload
+        name="image"
+        customUpload="true"
+        (uploadHandler)="onUpload($event)"
+        accept="image/*"
+        maxFileSize="1000000"
+      ></p-fileUpload>
+      <div
+        *ngIf="
+          productForm.get('imageUrl')?.invalid &&
+          productForm.get('imageUrl')?.touched
+        "
+      >
+        La imagen es requerida.
+      </div>
+    </div>
+
+    <!-- Estado (Activo/Inactivo) -->
+   
+      <div class="op">
+        <p-selectButton
+          formControlName="state"
+          [options]="stateOptions"
+          optionLabel="label"
+        ></p-selectButton>
+      </div>
+
+
+    <!-- Botones de acción -->
+    <div style="display: flex; justify-content: space-around">
+      <button
+        type="submit"
+        pButton
+        label="Guardar"
+        icon="fa-solid fa-save"
+      ></button>
+      <button
+        type="button"
+        pButton
+        label="Cancelar"
+        icon="fa-solid fa-ban"
+      ></button>
+    </div>
+  </form>
+</p-dialog>

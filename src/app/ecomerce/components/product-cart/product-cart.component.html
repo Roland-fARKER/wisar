@@ -1,0 +1,33 @@
+<div class="card-wrapper">
+  <div class="tag" *ngIf="product.discount">
+    <small>¡Descuento!</small>
+  </div>
+  <div class="imgContainer">
+    <img [src]="product.imageUrl" alt="{{ product.name }}" />
+  </div>
+  <div class="title-container">
+    <p class="name">{{ product.name }}</p>
+    <p class="descr">{{ product.description | truncate : 43 }}</p>
+  </div>
+  <div class="price-container">
+    <p>C$ {{ product.discountPrice || product.price }}</p>
+  </div>
+  <div class="rating-container">
+    <i class="fa-solid fa-star"></i>
+    <i class="fa-regular fa-star"></i>
+    <i class="fa-regular fa-star"></i>
+    <i class="fa-regular fa-star"></i>
+    <i class="fa-regular fa-star"></i>
+  </div>
+  <div class="action-container">
+    <div class="add-car-btn btn" (click)="addToCart(product)">
+      <i class="fa-solid fa-cart-plus"></i>
+    </div>
+    <div class="add-like-list btn">
+      <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="product btn">
+      <i class="fa-solid fa-shop"></i>
+    </div>
+  </div>
+</div>

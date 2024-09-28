@@ -110,18 +110,6 @@
   margin-right: 8px;
 }
 
-.facebook {
-  color: #3b5998;
-}
-
-.instagram {
-  color: #e4405f;
-}
-
-.whatsapp {
-  color: #25d366;
-}
-
 .no-shop-message {
   text-align: center;
   padding: 50px 20px;
@@ -135,4 +123,68 @@
 .no-shop-message p {
   font-size: 1.2rem;
   color: #666;
+}
+
+.banner{
+  width: 100%;
+}
+
+.banner img{
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.store{
+  width: 40rem;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+.profile img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.profile{
+  position: relative;
+  top: -40px;
+}
+
+.info{
+  margin-top: -50px;
+  color: var(--azul);
+}
+
+.social{
+  display: flex;
+  gap: 10px;
+}
+
+.social div{
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--azul);
+  color: var(--naranja);
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .store{
+    width: 100%;
+  }
+}
+
+.g-1{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }

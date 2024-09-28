@@ -1,3 +1,48 @@
-<div class="cont-p" >
+<div class="wrap3">
+  <div class="top-title">
+    <h3><i class="fa-solid fa-fire-flame-curved"></i> Productos destacados</h3>
+  </div>
+  <br />
+  <br />
 
+  <p-carousel
+    [value]="products"
+    [numVisible]="3"
+    [numScroll]="1"
+    [circular]="true"
+    autoplayInterval="3000"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template let-product pTemplate="item">
+      <div class="cont-card">
+        <app-product-cart [product]="product"></app-product-cart>
+      </div>
+    </ng-template>
+  </p-carousel>
+
+  <br /><br /><br />
+  <div class="top-title2">
+    <div>
+      <h3>
+        <i class="fa-solid fa-cloud-showers-heavy"></i> Productos de temporada
+      </h3>
+    </div>
+  </div>
+  <br />
+  <br />
+
+  <p-carousel
+    [value]="productsWinter"
+    [numVisible]="3"
+    [numScroll]="1"
+    [circular]="true"
+    autoplayInterval="3000"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template let-product pTemplate="item">
+      <div class="cont-card">
+        <app-product-cart [product]="product"></app-product-cart>
+      </div>
+    </ng-template>
+  </p-carousel>
 </div>

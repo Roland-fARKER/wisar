@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--azul);
+  color: #fff;
+}
+
+
+.w{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.w img{
+    max-width: 30rem;
+}
+

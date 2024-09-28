@@ -104,3 +104,27 @@ i {
     z-index: 120;
   }
 }
+
+.fa-cart-shopping{
+  transition: transform 0.3s ease;
+}
+
+.fa-cart-shopping.animate {
+  transform: scale(1.5);
+}
+
+.cart-item{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--naranja);
+}
+
+.namep{
+  font-weight: 700;
+}
+
+.fa-trash{
+  padding: 5px;
+}

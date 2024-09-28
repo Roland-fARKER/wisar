@@ -1,0 +1,115 @@
+.card-wrapper {
+  border-radius: 10px;
+  min-width: 210px;
+  width: 210px;
+  min-height: 400px; 
+  max-height: 400px;
+  padding: 8px;
+  border: 1px solid var(--naranja);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+
+.imgContainer {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.imgContainer img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.title-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-container .name {
+  margin: 0;
+  padding: 0;
+  font-weight: 900;
+}
+
+.title-container .descr {
+  margin: 0;
+  padding: 0;
+}
+
+.price-container {
+  width: 100%;
+}
+
+.price-container p {
+  font-weight: bold;
+  text-align: right;
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.add-car-btn {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--naranja);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.add-like-list {
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: var(--azul);
+  color: var(--naranja);
+}
+
+.product {
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: var(--azul);
+  color: var(--naranja);
+}
+
+.btn {
+  cursor: pointer;
+}
+.rating-container {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  margin: 10px 0px;
+  justify-content: baseline;
+}
+
+.rating-container {
+  color: var(--azul);
+}
+
+.tag {
+  background-color: var(--azul);
+  color: var(--naranja);
+  padding: 3px 30px;
+  border-radius: 5px;
+  position: relative;
+  transform: rotate(-45deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: -70px;
+  top: 15px;
+}
+
+.tag small {
+  font-weight: 800;
+}
