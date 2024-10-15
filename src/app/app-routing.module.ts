@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./ecomerce/ecomerce.module').then(m => m.EcomerceModule),
   },
   {
+    path: 'forum',
+    loadChildren: () => import('./forum/forum.module').then(m => m.ForumModule)
+  },
+  {
     path: '',
     redirectTo: 'ecomerce/home',
     pathMatch: 'full'
