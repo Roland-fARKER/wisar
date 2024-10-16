@@ -1,10 +1,67 @@
-<div *ngFor="let post of posts$ | async">
-  <h2>{{ post.title }}</h2>
-  <p *ngFor="let paragraph of post.content">{{ paragraph }}</p>
-  <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="Post Image" />
-  <p>By {{ post.authorName }} on {{ post.createdAt | date }}</p>
-  <p>{{ post.id }}</p>
-  <div>
-    <app-comments [post]="post"></app-comments>
+<app-navbar></app-navbar>
+<div style="height: 100px; width: 100%; overflow: hidden; position: relative">
+  <ul class="background">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <div class="head-ban">
+    <h2>Siempre conectados</h2>
   </div>
 </div>
+
+<div class="grid-cont">
+  <div>
+    <h3>categorias</h3>
+  </div>
+  <div class="wrap-post">
+    <router-outlet></router-outlet>
+    <ng-container *ngFor="let post of posts$ | async">
+      <div class="postcard">
+        <div class="pic-post">
+          <!-- Si el autor tiene imagen, se muestra la imagen, si no, se usa el componente Avatar con las iniciales -->
+          <ng-container *ngIf="post.author?.profilePhotoUrl; else avatar">
+            <img
+              [src]="post.author?.profilePhotoUrl"
+              class="profile-img"
+              alt="Profile Picture"
+            />
+          </ng-container>
+          <ng-template #avatar>
+            <p-avatar
+              label="{{
+                getInitials(
+                  post.author?.firstName || '',
+                  post.author?.lastName || ''
+                )
+              }}"
+              [style]="{
+                'background-color': 'var(--azul)',
+                color: 'var(--naranja)'
+              }"
+              size="large"
+            ></p-avatar>
+          </ng-template>
+        </div>
+        <div class="post-info">
+          <h3>{{ post.title }}</h3>
+          <small>
+            Publicado por {{ post.author?.firstName }} el
+            {{ post.createdAt | date }}
+          </small>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div>
+    <h3>PUBLICIDAD </h3>
+  </div>
+</div>
+<app-footer></app-footer>

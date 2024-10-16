@@ -59,6 +59,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     FileUploadModule,
     SelectButtonModule
   ],
+  exports:[NavbarComponent, FooterComponent ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class EcomerceModule { }

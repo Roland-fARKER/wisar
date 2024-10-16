@@ -6,8 +6,11 @@ import { CreatePostComponent } from './views/create-post/create-post.component';
 
 const routes: Routes = [
     { path: '',redirectTo : 'post',  pathMatch: 'full' },
-    { path: 'post', component : PostListComponent },
-    { path: 'create', component : CreatePostComponent }
+    { path: 'post', component : PostListComponent,
+        children: [
+            { path: 'create', component : CreatePostComponent }     
+        ]
+     },
 ];
 
 @NgModule({

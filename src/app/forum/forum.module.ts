@@ -5,7 +5,7 @@ import { PostListComponent } from './views/post-list/post-list.component';
 import { CommentsComponent } from './views/comments/comments.component';
 import { SharedModule } from '../shared/shared.module';
 import { ForumRoutingModule } from './forum.module.routing';
-
+import { EcomerceModule } from '../ecomerce/ecomerce.module';
 @NgModule({
   declarations: [
     CreatePostComponent,
@@ -15,7 +15,8 @@ import { ForumRoutingModule } from './forum.module.routing';
   imports: [
     CommonModule,
     SharedModule,
-    ForumRoutingModule
+    ForumRoutingModule,
+    EcomerceModule
   ]
 })
 export class ForumModule { }
