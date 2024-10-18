@@ -5,7 +5,7 @@
   </div>
   <p>{{ Post.content }}</p>
 
-  <div style="display: flex; justify-content: space-between;" >
+  <div style="display: flex; gap: 30px; align-items: baseline; " >
     <div>
       <!-- Si el autor tiene imagen, se muestra la imagen, si no, se usa el componente Avatar con las iniciales -->
       <ng-container *ngIf="Post.author?.profilePhotoUrl; else avatar">
@@ -31,7 +31,7 @@
       </ng-template>
       <small>{{ Post.author?.firstName }} {{ Post.author?.lastName }}</small>
     </div>
-    <small> {{ Post.createdAt | date }} </small>
+    <small><i class="fa-regular fa-clock"></i> {{ Post.createdAt | date }} </small>
   </div>
   <app-comments [post]="Post"></app-comments>
 </div>
