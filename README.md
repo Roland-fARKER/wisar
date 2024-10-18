@@ -1,27 +1,72 @@
-# Wisar
+# WISAR - E-commerce para Emprendedores
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
+**WISAR** es una plataforma de comercio electrónico diseñada para emprendedores, utilizando tecnologías modernas para crear una solución escalable, eficiente y fácil de mantener.
 
-## Development server
+## Tecnologías Utilizadas
+- **Angular**: Framework frontend.
+- **PrimeNG**: Librería de componentes UI.
+- **Firebase**: Plataforma Backend-as-a-Service.
+- **Screaming Architecture**: Enfoque arquitectónico centrado en el dominio del negocio.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## Instalación y Configuración
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 1. Crear el Proyecto en Angular
 
-## Build
+1. Instalar Angular CLI:
+    ```bash
+    npm install -g @angular/cli
+    ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Crear un nuevo proyecto:
+    ```bash
+    ng new ecommerce-app
+    ```
 
-## Running unit tests
+3. Instalar PrimeNG y dependencias:
+    ```bash
+    npm install primeng primeicons @angular/cdk
+    ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 2. Configurar Firebase
 
-## Running end-to-end tests
+1. Instalar Firebase CLI:
+    ```bash
+    npm install -g firebase-tools
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Iniciar sesión e inicializar Firebase:
+    ```bash
+    firebase login
+    firebase init
+    ```
 
-## Further help
+    Selecciona:
+    - **Firestore**: Base de datos.
+    - **Authentication**: Gestión de usuarios.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3. Instalar AngularFire:
+    ```bash
+    npm install firebase @angular/fire
+    ```
+
+---
+
+## Detalle sobre las Tecnologias
+
+- **Angular**: Ofrece una arquitectura escalable y una experiencia de usuario eficiente mediante aplicaciones SPA.
+- **PrimeNG**: Proporciona componentes de interfaz listos para usar, optimizados para rendimiento y accesibilidad.
+- **Firebase**: Backend flexible con servicios integrados para autenticación, base de datos y hosting.
+- **Screaming Architecture**: Organiza el código en torno a conceptos de negocio, mejorando la mantenibilidad y escalabilidad.
+
+---
+
+## Arquitectura: Screaming Architecture
+
+El proyecto sigue la filosofía de **Screaming Architecture**, destacando la intención y el propósito del sistema desde su estructura:
+
+- **Claridad del dominio**: El código refleja el dominio de e-commerce.
+- **Alta mantenibilidad**: Permite hacer cambios fácilmente en módulos específicos.
+- **Escalabilidad**: Agregar nuevas funcionalidades sin comprometer el sistema.
+- **Desacoplamiento de tecnología**: Mantiene la lógica de negocio independiente de la infraestructura tecnológica.
