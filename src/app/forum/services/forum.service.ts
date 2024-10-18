@@ -4,7 +4,6 @@ import { Post } from '../models/Post.model';
 import { Comment } from '../models/Comment.model';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { map, Observable } from 'rxjs';
-import { FieldValue } from 'firebase/firestore';
 import firebase from 'firebase/compat/app';
 
 @Injectable({
@@ -71,4 +70,20 @@ export class ForumService {
         firebase.firestore.FieldValue.arrayUnion(reply),
     });
   }
+
+  getPostById(postId: string): Observable<Post | undefined> {
+    return this.postsCollection.doc(postId).snapshotChanges().pipe(
+      map((action) => {
+        const data = action.payload.data() as Post | undefined;
+        if (data) {
+          const id = action.payload.id;
+          const createdAt = data.createdAt
+            ? (data.createdAt as any).toDate()
+            : new Date();
+          return { id, ...data, createdAt };
+        }
+        return undefined;
+      })
+    );
+  }  
 }

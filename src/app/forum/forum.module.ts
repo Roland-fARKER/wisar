@@ -6,11 +6,15 @@ import { CommentsComponent } from './views/comments/comments.component';
 import { SharedModule } from '../shared/shared.module';
 import { ForumRoutingModule } from './forum.module.routing';
 import { EcomerceModule } from '../ecomerce/ecomerce.module';
+import { PostComponent } from './components/post/post.component';
+import { DetailComponent } from './components/detail/detail.component';
 @NgModule({
   declarations: [
     CreatePostComponent,
     PostListComponent,
-    CommentsComponent
+    CommentsComponent,
+    PostComponent,
+    DetailComponent
   ],
   imports: [
     CommonModule,
