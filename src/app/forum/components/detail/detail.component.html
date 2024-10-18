@@ -1,1 +1,29 @@
-<p>detail works!</p>
+<div *ngIf="Post">
+  <h2>{{ Post.title }}</h2>
+  <p>{{ Post.content }}</p>
+  <small> {{ Post.createdAt | date }} </small>
+  <div>
+    <!-- Si el autor tiene imagen, se muestra la imagen, si no, se usa el componente Avatar con las iniciales -->
+    <ng-container *ngIf="Post.author?.profilePhotoUrl; else avatar">
+      <img
+        [src]="Post.author?.profilePhotoUrl"
+        class="profile-img"
+        alt="Profile Picture"
+      />
+    </ng-container>
+    <ng-template #avatar>
+      <p-avatar
+        label="{{
+          getInitials(Post.author?.firstName || '', Post.author?.lastName || '')
+        }}"
+        [style]="{
+          'background-color': 'var(--azul)',
+          color: 'var(--naranja)'
+        }"
+        size="large"
+      ></p-avatar>
+    </ng-template>
+    <small>{{ Post.author?.firstName }} {{ Post.author?.lastName }}</small>
+  </div>
+  <app-comments [post]="Post"></app-comments>
+</div>

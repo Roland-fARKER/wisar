@@ -9,15 +9,18 @@ import { ForumService } from '../../services/forum.service';
   styleUrl: './detail.component.css',
 })
 export class DetailComponent {
-  Post? : Post;
+  Post?: Post;
   postId?: string;
 
-  constructor( private forumService: ForumService, private route: ActivatedRoute) {}
+  constructor(
+    private forumService: ForumService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // Capturar el id del post desde la URL
     this.postId = this.route.snapshot.paramMap.get('id')!;
-    
+
     this.forumService.getPostById(this.postId).subscribe((post) => {
       if (post) {
         this.Post = post;
@@ -25,5 +28,11 @@ export class DetailComponent {
         console.log('Post no encontrado');
       }
     });
+  }
+
+  getInitials(firstName: string, lastName: string): string {
+    const firstInitial = firstName ? firstName.charAt(0).toUpperCase() : '';
+    const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : '';
+    return `${firstInitial}${lastInitial}`;
   }
 }

@@ -10,11 +10,15 @@ import { User } from '../../../models/User.model';
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css',
 })
-export class CreatePostComponent implements OnInit  {
+export class CreatePostComponent implements OnInit {
   postForm: FormGroup;
-  currentuser: User | null = null ;
+  currentuser: User | null = null;
 
-  constructor(private fb: FormBuilder, private forumService: ForumService, private _userService : UserService1  ) {
+  constructor(
+    private fb: FormBuilder,
+    private forumService: ForumService,
+    private _userService: UserService1
+  ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
@@ -23,20 +27,20 @@ export class CreatePostComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    this._userService.getCurrentUser().subscribe((user)=> {
+    this._userService.getCurrentUser().subscribe((user) => {
       this.currentuser = user;
-      console.log(this.currentuser)
-  });
+      console.log(this.currentuser);
+    });
   }
 
   onSubmit() {
     if (this.postForm.valid) {
       const post: Post = {
         title: this.postForm.value.title,
-        content: this.postForm.value.content.split('\n'), 
+        content: this.postForm.value.content.split('\n'),
         imageUrl: this.postForm.value.imageUrl,
         createdAt: new Date(),
-        comments: [], 
+        comments: [],
         author: this.currentuser ? this.currentuser : null,
       };
 

@@ -36,7 +36,7 @@ export class NavbarComponent {
 
   navs: MenuIt[] = [
     { label: 'Inicio', icon: 'fa-house', route: '/ecomerce' },
-    { label: 'Comunidad', icon: 'fa-users', route: '/ecomerce' },
+    { label: 'Comunidad', icon: 'fa-users', route: '/forum' },
     { label: 'Perfil', icon: 'fa-user', route: '/ecomerce/profile' },
     { label: 'Contacto', icon: 'fa-phone', route: '/ecomerce' },
   ];

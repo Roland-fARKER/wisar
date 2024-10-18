@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'ecomerce/home',
+    redirectTo: 'ecomerce',
     pathMatch: 'full'
   }
 ];

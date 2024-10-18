@@ -1,39 +1,70 @@
 <div class="comments-section">
-    <h3>Comentarios</h3>
-  
-    <!-- Formulario para agregar un nuevo comentario -->
-    <form [formGroup]="commentForm" (ngSubmit)="onComment()">
+  <h3>Comentarios</h3>
+
+  <!-- Formulario para agregar un nuevo comentario -->
+  <form [formGroup]="commentForm" (ngSubmit)="onComment()">
+    <div class="flex-1">
       <div class="form-group">
         <label for="commentContent">Tu comentario:</label>
-        <textarea id="commentContent" formControlName="commentContent" rows="3" required></textarea>
+        <textarea
+          id="commentContent"
+          formControlName="commentContent"
+          rows="1"
+          required
+        ></textarea>
       </div>
       <button type="submit" [disabled]="commentForm.invalid">Comentar</button>
-    </form>
-  
-    <!-- Lista de comentarios -->
-    <div *ngFor="let comment of post.comments">
-      <div class="comment">
-        <p><strong>{{ comment.authorName }}:</strong> {{ comment.content }}</p>
-        <p>Publicado el: {{ post.createdAt | date: 'short' }}</p>
-  
-        <!-- Formulario para responder a un comentario -->
-        <form [formGroup]="replyForm" (ngSubmit)="onReply(comment.id)">
+    </div>
+  </form>
+
+  <!-- Lista de comentarios -->
+  <div *ngFor="let comment of post.comments">
+    <div class="comment">
+      <p>
+        <strong>{{ comment.authorName }}:</strong>
+      </p>
+      <p>
+        {{ comment.content }}
+      </p>
+      <small>Publicado el: {{ comment.createdAt | date : "short" }}</small>
+      <div class="responder-flag">
+        <small (click)="toggleResponder(comment.id)"
+          ><strong>Responder </strong></small
+        >
+      </div>
+
+      <!-- Formulario para responder a un comentario -->
+      <form
+        *ngIf="responderFlags[comment.id]"
+        [formGroup]="replyForm"
+        (ngSubmit)="onReply(comment.id)"
+      >
+        <div class="flex-1">
           <div class="form-group">
             <label for="replyContent">Tu respuesta:</label>
-            <textarea id="replyContent" formControlName="replyContent" rows="2" required></textarea>
+            <textarea
+              id="replyContent"
+              formControlName="replyContent"
+              rows="2"
+              required
+            ></textarea>
           </div>
-          <button type="submit" [disabled]="replyForm.invalid">Responder</button>
-        </form>
-  
-        <!-- Mostrar respuestas -->
-        <div *ngIf="comment.replies.length > 0">
-          <h4>Respuestas:</h4>
-          <div *ngFor="let reply of comment.replies">
-            <p><strong>{{ reply.authorName }}:</strong> {{ reply.content }}</p>
-            <p>Publicado el: {{ post.createdAt | date: 'short' }}</p>
-          </div>
+          <button type="submit" [disabled]="replyForm.invalid">
+            Responder
+          </button>
+        </div>
+      </form>
+
+      <!-- Mostrar respuestas -->
+      <div *ngIf="comment.replies.length > 0">
+        <h4>Respuestas:</h4>
+        <div *ngFor="let reply of comment.replies">
+          <p>
+            <strong>{{ reply.authorName }}:</strong> {{ reply.content }}
+          </p>
+          <p>Publicado el: {{ post.createdAt | date : "short" }}</p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
