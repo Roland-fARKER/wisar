@@ -131,3 +131,32 @@
   top: 310px;
   animation-delay: 43s;
 }
+
+.wrap-cat{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cat-c{
+  background-color: var(--azul);
+  color: #fff;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cat-c:hover{
+  border: 1px solid var(--azul);
+  color: var(--azul);
+  background-color: #fff;
+}
+
+.cat-c p{
+  margin: 0;
+  padding: 0;
+}
+
+h3{
+  color: var(--naranja);
+}

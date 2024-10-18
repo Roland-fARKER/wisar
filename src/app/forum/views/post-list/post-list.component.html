@@ -18,14 +18,21 @@
 </div>
 
 <div class="grid-cont">
-  <div>
-    <h3>categorias</h3>
+  <div style="padding: 10px;">
+    <h3><i class="fa-regular fa-message"></i> Temas</h3>
+    <div class="wrap-cat">
+      <ng-container *ngFor="let cat of categories">
+        <div class="cat-c">
+          <small>{{ cat.name }}</small>
+        </div>
+      </ng-container>
+    </div>
   </div>
   <div>
     <router-outlet></router-outlet>
   </div>
   <div>
-    <h3>PUBLICIDAD </h3>
+    <h3>Publicidad</h3>
   </div>
 </div>
 <app-footer></app-footer>
