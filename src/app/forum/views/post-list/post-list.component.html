@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div style="height: 100px; width: 100%; overflow: hidden; position:sticky">
+<div style="height: 100px; width: 100%; overflow: hidden; position: sticky">
   <ul class="background">
     <li></li>
     <li></li>
@@ -17,8 +17,12 @@
   </div>
 </div>
 
+<div style="display: flex; width: 100%; justify-content: flex-end; padding: 10px; " >
+  <p-button icon="fa-solid fa-plus" label="Crear post" (onClick)="createPost()" ></p-button>
+</div>
+
 <div class="grid-cont">
-  <div style="padding: 10px;">
+  <div style="padding: 10px">
     <h3><i class="fa-regular fa-message"></i> Temas</h3>
     <div class="wrap-cat">
       <ng-container *ngFor="let cat of categories">
