@@ -7,11 +7,13 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { User } from '../../../models/User.model';
 import { UserService1 } from '../../../chats/services/user.service';
+import { MessageService } from 'primeng/api';  // Importar el servicio de mensajes
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.css'],
+  providers: [MessageService], // Proveedor del servicio
 })
 export class CommentsComponent {
   @Input() post!: Post;
@@ -23,7 +25,8 @@ export class CommentsComponent {
   constructor(
     private fb: FormBuilder,
     private forumService: ForumService,
-    private _userService: UserService1
+    private _userService: UserService1,
+    private messageService: MessageService  // Inyectar el servicio
   ) {
     this.commentForm = this.fb.group({
       commentContent: [''],
@@ -51,7 +54,7 @@ export class CommentsComponent {
   onComment() {
     if (!this.post.id) {
       console.error('Post ID is undefined');
-      return; // Salir si el ID no está disponible
+      return;
     }
 
     const comment: Comment = {
@@ -67,38 +70,56 @@ export class CommentsComponent {
     this.forumService
       .addComment(this.post.id, comment)
       .then(() => {
-        this.commentForm.reset(); // Limpiar el formulario después de agregar el comentario
-        console.log('Comentario agregado con éxito');
+        this.commentForm.reset(); // Limpiar el formulario
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Comentario agregado con éxito', // Mostrar mensaje de éxito
+        });
       })
       .catch((error) => {
         console.error('Error al agregar el comentario:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al agregar el comentario', // Mostrar mensaje de error
+        });
       });
   }
 
   onReply(commentId: string) {
     if (!this.post.id) {
       console.error('Post ID is undefined');
-      return; // Salir si el ID no está disponible
+      return;
     }
 
     const reply: Comment = {
       id: this.forumService.generateId(),
       postId: this.post.id,
       content: this.replyForm.value.replyContent,
-      authorId: 'userId', // Aquí deberías obtener el ID del usuario autenticado
-      authorName: 'username', // Aquí deberías obtener el nombre del usuario autenticado
-      createdAt: new Date(), // Usar la fecha actual
+      authorId: this.currentuser ? this.currentuser?.uid : '000',
+      authorName: this.currentuser ? this.currentuser?.firstName : '000',
+      createdAt: new Date(),
       replies: [],
     };
 
     this.forumService
       .replyToComment(this.post.id, commentId, reply)
       .then(() => {
-        this.replyForm.reset(); // Limpiar el formulario después de agregar la respuesta
-        console.log('Respuesta agregada con éxito');
+        this.replyForm.reset(); // Limpiar el formulario
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Respuesta agregada con éxito', // Mostrar mensaje de éxito
+        });
       })
       .catch((error) => {
         console.error('Error al agregar la respuesta:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al agregar la respuesta', // Mostrar mensaje de error
+        });
       });
   }
 
@@ -111,7 +132,7 @@ export class CommentsComponent {
       if (comment.createdAt instanceof firebase.firestore.Timestamp) {
         comment.createdAt = comment.createdAt.toDate();
       }
-      comment.replies = this.convertTimestamps(comment.replies); // Convertir también en las respuestas
+      comment.replies = this.convertTimestamps(comment.replies);
       return comment;
     });
   }

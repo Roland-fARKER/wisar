@@ -23,35 +23,20 @@
       <p>
         <strong>{{ comment.authorName }}:</strong>
       </p>
-      <p>
-        {{ comment.content }}
-      </p>
-      <small>Publicado el: {{ comment.createdAt | date : "short" }}</small>
+      <p>{{ comment.content }}</p>
+      <small>Publicado el: {{ comment.createdAt | date: 'short' }}</small>
       <div class="responder-flag">
-        <small (click)="toggleResponder(comment.id)"
-          ><strong>Responder </strong></small
-        >
+        <small (click)="toggleResponder(comment.id)"><strong>Responder</strong></small>
       </div>
 
       <!-- Formulario para responder a un comentario -->
-      <form
-        *ngIf="responderFlags[comment.id]"
-        [formGroup]="replyForm"
-        (ngSubmit)="onReply(comment.id)"
-      >
+      <form *ngIf="responderFlags[comment.id]" [formGroup]="replyForm" (ngSubmit)="onReply(comment.id)">
         <div class="flex-1">
           <div class="form-group">
             <label for="replyContent">Tu respuesta:</label>
-            <textarea
-              id="replyContent"
-              formControlName="replyContent"
-              rows="2"
-              required
-            ></textarea>
+            <textarea id="replyContent" formControlName="replyContent" rows="2" required></textarea>
           </div>
-          <button type="submit" [disabled]="replyForm.invalid">
-            Responder
-          </button>
+          <button type="submit" [disabled]="replyForm.invalid">Responder</button>
         </div>
       </form>
 
@@ -59,12 +44,13 @@
       <div *ngIf="comment.replies.length > 0">
         <h4>Respuestas:</h4>
         <div *ngFor="let reply of comment.replies">
-          <p>
-            <strong>{{ reply.authorName }}:</strong> {{ reply.content }}
-          </p>
-          <p>Publicado el: {{ post.createdAt | date : "short" }}</p>
+          <p><strong>{{ reply.authorName }}:</strong> {{ reply.content }}</p>
+          <p>Publicado el: {{ post.createdAt | date: 'short' }}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Toast notifications -->
+<p-toast></p-toast>
