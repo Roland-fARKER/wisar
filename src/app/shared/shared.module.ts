@@ -23,6 +23,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogModule } from 'primeng/dialog';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [ LoaderComponent ],
@@ -47,7 +48,8 @@ import { DialogModule } from 'primeng/dialog';
     StepperModule,
     FloatLabelModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    TabViewModule
   ],
   exports: [
     ButtonModule,
@@ -71,7 +73,8 @@ import { DialogModule } from 'primeng/dialog';
     FloatLabelModule,
     FileUploadModule,
     HttpClientModule,
-    DialogModule
+    DialogModule,
+    TabViewModule
   ],
   providers: [ MessageService ]
 })

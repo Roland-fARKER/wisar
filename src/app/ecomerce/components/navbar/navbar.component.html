@@ -1,4 +1,4 @@
-<nav>
+<nav [ngStyle]="{ 'background-color': isDarkMode ? 'var(--aux)' : '#fff' }">
   <div class="cont">
     <img src="assets/ilus-logo.png" />
     <div>
@@ -13,18 +13,27 @@
     </div>
     <ul [ngClass]="{ 'show-menu': menuOpen, 'hide-menu': !menuOpen }">
       <ng-container *ngFor="let nv of navs">
-        <li (click)="redirect(nv.route)">
+        <li
+          (click)="redirect(nv.route)"
+          [ngStyle]="{ color: isDarkMode ? '#fff' : 'var(--azul)' }"
+        >
           <i class="fa-solid" [ngClass]="nv.icon"></i>
           <span>{{ nv.label }}</span>
         </li>
       </ng-container>
-      <ng-container *ngIf="CurrentUser; else log  " > 
-        <li (click)="logout()" >
-          <span >Cerrar Sesión</span>
+      <ng-container *ngIf="CurrentUser; else log">
+        <li
+          (click)="logout()"
+          [ngStyle]="{ color: isDarkMode ? '#fff' : 'var(--azul)' }"
+        >
+          <span>Cerrar Sesión</span>
         </li>
       </ng-container>
       <ng-template #log>
-        <li (click)="redirect('/auth/login')" >
+        <li
+          (click)="redirect('/auth/login')"
+          [ngStyle]="{ color: isDarkMode ? '#fff' : 'var(--azul)' }"
+        >
           <span>Iniciar Sesión</span>
         </li>
       </ng-template>
@@ -37,11 +46,18 @@
         severity="warning"
         (click)="op.toggle($event)"
         [class.animate]="animateCart"
+        [ngStyle]="{ color: isDarkMode ? '#fff' : 'var(--azul)' }"
+      ></i>
+      <i
+        class="fa-solid fa-moon icons"
+        (click)="toggleTheme()"
+        [ngStyle]="{ color: isDarkMode ? '#fff' : 'var(--azul)' }"
       ></i>
       <i
         class="fa-solid icons"
         [ngClass]="menuOpen ? 'fa-times' : 'fa-bars'"
         (click)="toggleMenu()"
+        [ngStyle]="{ color: isDarkMode ? '#fff' : 'var(--azul)' }"
       ></i>
     </div>
   </div>
@@ -52,11 +68,14 @@
     <img class="ilus-car" src="assets/carShopAnimated.svg" />
     <p class="textCent">Cuando agregues productos los mostraremos aquí,</p>
   </div>
-  <div *ngIf="cart.length" >
+  <div *ngIf="cart.length">
     <ng-container>
       <div class="cart-item" *ngFor="let groupedItem of groupedCart">
         <div class="img-cont">
-          <img [src]="groupedItem.item.imageUrl" alt="{{ groupedItem.item.name }}" />
+          <img
+            [src]="groupedItem.item.imageUrl"
+            alt="{{ groupedItem.item.name }}"
+          />
         </div>
         <div class="info-cont">
           <p class="namep">{{ groupedItem.item.name }}</p>
@@ -64,15 +83,21 @@
           <p>Cantidad: {{ groupedItem.quantity }}</p>
         </div>
         <div class="action-cont">
-          <p-button icon="fa-solid fa-trash" (onClick)="removeItem(groupedItem.item.id)" [rounded]="true" [text]="true" />
+          <p-button
+            icon="fa-solid fa-trash"
+            (onClick)="removeItem(groupedItem.item.id)"
+            [rounded]="true"
+            [text]="true"
+          />
         </div>
       </div>
-      
+
       <div class="total">
         <p>Total: C$ {{ total }}</p>
-
       </div>
-      
+      <div>
+        <p-button icon="fa-solid fa-credit-card" label="Checkout" (onClick)="checkout()" ></p-button>
+      </div>
     </ng-container>
   </div>
 </p-overlayPanel>

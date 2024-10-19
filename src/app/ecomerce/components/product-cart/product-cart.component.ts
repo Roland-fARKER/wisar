@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../../models/Product.model';
+import { ThemeService } from '../../../shared/services/theme.service';
 @Component({
   selector: 'app-product-cart',
   templateUrl: './product-cart.component.html',
@@ -7,6 +8,17 @@ import { Product } from '../../../models/Product.model';
 })
 export class ProductCartComponent {
   @Input() product!: Product;
+  isDarkMode = false;
+
+  constructor(
+    private themeService: ThemeService
+  ){}
+
+  ngOnInit(): void {
+    this.themeService.darkMode$.subscribe((isDark) => {
+      this.isDarkMode = isDark;
+    });
+  }
 
   addToCart(product: any) {
     const cart = JSON.parse(localStorage.getItem('cart') ?? '[]');

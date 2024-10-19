@@ -1,3 +1,4 @@
-<p-toast></p-toast>
-
-<router-outlet />
+<div [ngStyle]="{ 'background-color': isDarkMode ? 'var(--aux)' : '#fff' }">
+  <p-toast></p-toast>
+  <router-outlet />
+</div>

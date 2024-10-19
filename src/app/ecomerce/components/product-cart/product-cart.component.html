@@ -1,4 +1,4 @@
-<div class="card-wrapper">
+<div class="card-wrapper" [ngStyle]="{ 'color': isDarkMode ? '#fff' : 'var(--azul)' }" >
   <div class="tag" *ngIf="product.discount">
     <small>¡Descuento!</small>
   </div>

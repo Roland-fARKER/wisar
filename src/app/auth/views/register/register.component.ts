@@ -81,7 +81,7 @@ export class RegisterComponent {
       const control = this.registerForm.get(key);
       if (control?.invalid) {
         console.log(`Campo inválido: ${key}`);
-        console.log(control.errors); // Muestra los errores específicos de ese control
+        console.log(control.errors);
       }
     });
 

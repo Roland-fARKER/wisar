@@ -1,0 +1,104 @@
+<app-navbar></app-navbar>
+
+<div class="wrap12">
+  <div class="cont5 izq">
+    <div *ngIf="cart.length">
+      <ng-container>
+        <div class="cart-item" *ngFor="let groupedItem of groupedCart">
+          <div class="imgContP">
+            <img
+              [src]="groupedItem.item.imageUrl"
+              alt="{{ groupedItem.item.name }}"
+            />
+          </div>
+          <div class="info-cont">
+            <p class="namep">{{ groupedItem.item.name }}</p>
+            <p>C$ {{ groupedItem.item.price }}</p>
+            <p>Cantidad: {{ groupedItem.quantity }}</p>
+          </div>
+          <div class="action-cont">
+            <p-button
+              icon="fa-solid fa-trash"
+              (onClick)="removeItem(groupedItem.item.id)"
+              [rounded]="true"
+              [text]="true"
+            />
+          </div>
+        </div>
+
+        <div class="total">
+          <p>Total: C$ {{ total }}</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="cont5 der">
+    <p-tabView styleClass="tabview-custom">
+      <p-tabPanel>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <i class="fa-solid fa-credit-card"></i>
+            <span class="font-bold white-space-nowrap m-0"> Tarjeta</span>
+          </div>
+        </ng-template>
+        <div class="wrap-form">
+          <p-inputGroup>
+            <p-inputGroupAddon>
+              <i class="fa-solid fa-credit-card"></i>
+            </p-inputGroupAddon>
+            <input
+              pInputText
+              name="text"
+              placeholder="Numero de tarjeta"
+              required
+            />
+          </p-inputGroup>
+          <div class="flex1">
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-solid fa-lock"></i>
+              </p-inputGroupAddon>
+              <input pInputText name="text" placeholder="/cod1" required />
+            </p-inputGroup>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="fa-solid fa-lock"></i>
+              </p-inputGroupAddon>
+              <input pInputText name="text" placeholder="/cod2" required />
+            </p-inputGroup>
+          </div>
+          <p-inputGroup>
+            <p-inputGroupAddon>
+              <i class="fa-solid fa-lock"></i>
+            </p-inputGroupAddon>
+            <input
+              pInputText
+              name="text"
+              placeholder="Numero de tarjeta"
+              required
+            />
+          </p-inputGroup>
+        </div>
+        <div class="flex1 cards">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-paypal"></i>
+        </div>
+        <div class="flex1" style="margin-top: 20px">
+          <p-button label="Cancelar"></p-button>
+          <p-button label="Procesar"></p-button>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Header II">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <i class="fa-brands fa-paypal"></i>
+            <span class="font-bold white-space-nowrap m-0"> Paypal</span>
+          </div>
+        </ng-template>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
+<p>pasarela works!</p>
+<app-footer></app-footer>

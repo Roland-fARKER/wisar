@@ -1,5 +1,4 @@
 nav {
-  background-color: #fff;
   display: flex;
   width: 100%;
   color: var(--azul);
@@ -51,12 +50,9 @@ ul li:hover i {
 
 ul li span {
   text-decoration: none;
-  color: var(--azul);
+
 }
 
-i {
-  color: var(--azul);
-}
 
 .cont {
   display: flex;
@@ -64,7 +60,7 @@ i {
   align-items: center;
   padding: 10px 20px;
   width: 100%;
-  max-width: 70rem;
+  max-width: 73rem;
   gap: 8px;
 }
 

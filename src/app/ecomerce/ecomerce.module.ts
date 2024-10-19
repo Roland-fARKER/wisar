@@ -27,6 +27,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CarruselInfoComponent } from './components/carrusel-info/carrusel-info.component';
+import { LtsProdComponent } from './views/lts-prod/lts-prod.component';
+import { PasarelaComponent } from './views/pasarela/pasarela.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { CarruselInfoComponent } from './components/carrusel-info/carrusel-info.
     ProductCartComponent,
     TruncatePipe,
     MyCouponsComponent,
-    CarruselInfoComponent
+    CarruselInfoComponent,
+    LtsProdComponent,
+    PasarelaComponent
   ],
   imports: [
     CommonModule,

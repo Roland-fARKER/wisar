@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { User } from '../../../models/User.model';
 import { UserService1 } from '../../../chats/services/user.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { ThemeService } from '../../../shared/services/theme.service';
+
 interface MenuIt {
   label: string;
   icon: string;
@@ -20,11 +22,13 @@ export class NavbarComponent {
   eventListener: any;
   badgeValue: number = 0;
   CurrentUser?: User | null;
+  isDarkMode = false;
 
   constructor(
     private router: Router,
     private userService: UserService1,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private themeService: ThemeService
   ) {}
 
   ngOnInit() {
@@ -40,6 +44,10 @@ export class NavbarComponent {
       this.CurrentUser = user;
       console.log(user);
     });
+
+    this.themeService.darkMode$.subscribe((isDark) => {
+      this.isDarkMode = isDark;
+    });
   }
 
   logout() {
@@ -54,7 +62,7 @@ export class NavbarComponent {
     { label: 'Inicio', icon: 'fa-house', route: '/ecomerce' },
     { label: 'Comunidad', icon: 'fa-users', route: '/forum' },
     { label: 'Perfil', icon: 'fa-user', route: '/ecomerce/profile' },
-    { label: 'Productos', icon: 'fa-box', route: '/ecomerce' },
+    { label: 'Productos', icon: 'fa-box', route: '/ecomerce/prods' },
   ];
 
   redirect(rute: string) {
@@ -100,5 +108,13 @@ export class NavbarComponent {
     return this.groupedCart.reduce((sum, groupedItem) => {
       return sum + groupedItem.item.price * groupedItem.quantity;
     }, 0);
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
+
+  checkout() {
+    this.router.navigate(['ecomerce/payment'])
   }
 }

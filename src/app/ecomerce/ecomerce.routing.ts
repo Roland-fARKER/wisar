@@ -8,6 +8,8 @@ import { MitiendaComponent} from './components/mitienda/mitienda.component';
 import { CreateShopComponent } from './components/create-shop/create-shop.component';
 import { MyproductsComponent } from './components/myproducts/myproducts.component';
 import { MyCouponsComponent } from './components/my-coupons/my-coupons.component';
+import { LtsProdComponent } from './views/lts-prod/lts-prod.component';
+import { PasarelaComponent } from './views/pasarela/pasarela.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,7 +23,9 @@ const routes: Routes = [
       { path: 'my-products', component: MyproductsComponent },
       { path: 'my-coupons', component: MyCouponsComponent  }
     ]
-  }
+  },
+  {path:'prods', component: LtsProdComponent  },
+  { path: 'payment', component: PasarelaComponent }
 ];
 
 @NgModule({
