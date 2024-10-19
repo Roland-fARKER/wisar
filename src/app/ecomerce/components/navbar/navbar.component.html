@@ -18,9 +18,16 @@
           <span>{{ nv.label }}</span>
         </li>
       </ng-container>
-      <li>
-        <span>Cerrar Sesión</span>
-      </li>
+      <ng-container *ngIf="CurrentUser; else log  " > 
+        <li (click)="logout()" >
+          <span >Cerrar Sesión</span>
+        </li>
+      </ng-container>
+      <ng-template #log>
+        <li (click)="redirect('/auth/login')" >
+          <span>Iniciar Sesión</span>
+        </li>
+      </ng-template>
     </ul>
     <div class="icons-cont">
       <i

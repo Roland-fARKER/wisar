@@ -26,6 +26,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { CarruselInfoComponent } from './components/carrusel-info/carrusel-info.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     MyproductsComponent,
     ProductCartComponent,
     TruncatePipe,
-    MyCouponsComponent
+    MyCouponsComponent,
+    CarruselInfoComponent
   ],
   imports: [
     CommonModule,

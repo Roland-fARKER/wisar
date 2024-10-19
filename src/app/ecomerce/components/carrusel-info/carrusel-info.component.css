@@ -1,0 +1,30 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
+  width: 100%;
+  display: none;
+  transition: opacity 1s ease-in-out;
+  border-radius: 10px;
+}
+
+.carousel-image.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+    .col-1{
+        flex-direction: column-reverse;
+        padding: 15px;
+    }  
+}

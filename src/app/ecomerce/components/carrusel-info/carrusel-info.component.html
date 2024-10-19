@@ -1,0 +1,42 @@
+<div>
+  <h1
+    style="
+      color: var(--naranja);
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    "
+  >
+    Conoce un poco más de Wisar
+  </h1>
+</div>
+<div style="display: flex; width: 100%; justify-content: center">
+  <div
+    class="col-1"
+    style="display: flex; gap: 20px; color: var(--azul); max-width: 900px"
+  >
+    <div class="carousel">
+      <div class="carousel-images">
+        <img
+          *ngFor="let image of images; let i = index"
+          [src]="image"
+          [class.active]="i === currentIndex"
+          class="carousel-image"
+        />
+      </div>
+    </div>
+
+    <div style="width: 100%; max-width: 400px">
+      <p>
+        En WISAR, somos una plataforma digital creada para potenciar a los
+        emprendedores nicaragüenses a través de herramientas tecnológicas
+        innovadoras como la inteligencia artificial y la realidad aumentada.
+        Este proyecto ha sido desarrollado por el equipo Nova Tech, compuesto
+        por un grupo interdisciplinario de dos mercadólogas, dos ingenieros en
+        sistemas, y una comunicadora, quienes han unido sus conocimientos para
+        construir una plataforma accesible, segura y eficiente, diseñada para
+        impulsar el crecimiento y la transformación digital en Nicaragua.
+      </p>
+    </div>
+  </div>
+</div>

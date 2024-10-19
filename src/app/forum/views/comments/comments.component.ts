@@ -67,7 +67,7 @@ export class CommentsComponent {
     this.forumService
       .addComment(this.post.id, comment)
       .then(() => {
-        this.commentForm.reset(); // Limpiar el formulario después de agregar el comentario
+        this.commentForm.reset();
         console.log('Comentario agregado con éxito');
       })
       .catch((error) => {
