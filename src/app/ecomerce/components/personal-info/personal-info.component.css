@@ -1,30 +1,106 @@
-.content {
-  flex: 1;
-  padding: 2rem;
+/* Estilos generales */
+body {
+  font-family: 'Arial', sans-serif; /* Manteniendo la tipografía principal */
+  background-color: #f8fafc; /* Color de fondo suave */
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f8fafc; /* Fondo suave para todo el contenido */
+}
+
+/* Grid para centrar la tarjeta */
+.user-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Estilos de la tarjeta */
+.user-profile {
+  background-color: #fff;
+  border-radius: 12px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+  overflow: hidden; 
+  transition: box-shadow 0.2s ease; 
+}
+
+.user-profile:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+}
+
+/* Encabezado del perfil */
 .user-profile-header {
   display: flex;
   align-items: center;
-}
-.user-image {
-  border-radius: 50%;
-  width: 100px;
-  margin-right: 1rem;
+  padding: 1rem;
+  background-color: #004451; /* Color de fondo existente */
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.user-details {
+.user-details h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff; /* Texto blanco */
+}
+
+.user-details p {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Información personal con mejor estructura */
+.personal-info {
+  padding: 1.5rem;
+}
+
+.personal-info h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.personal-info p strong {
+  font-weight: 600;
+  color: #111827; 
+}
+
+/* Footer de la tarjeta */
+.card-footer {
+  padding: 1rem;
+  background-color: #f3f4f6; 
+  text-align: center;
+}
+
+/* Botón de edición */
+button {
+  background-color: #f97316; 
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px; 
+  cursor: pointer;
   font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.personal-info,
-.address-info {
-  margin-top: 2rem;
+button:hover {
+  background-color: #fb923c; 
+  transform: translateY(-2px); 
 }
 
-
-.location-info{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.card {
+  border: 1px solid #e5e7eb; 
+  border-radius: 12px; 
 }
