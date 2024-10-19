@@ -91,4 +91,8 @@ export class RegisterComponent {
       detail: 'Por favor complete todos los campos requeridos correctamente.',
     });
   }
+
+  login(){
+    this.router.navigate(['/auth/login'])
+  }
 }

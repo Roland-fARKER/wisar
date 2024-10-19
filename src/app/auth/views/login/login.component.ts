@@ -54,4 +54,8 @@ export class LoginComponent {
         this.messageService.add({severity:'error', summary:'Error', detail: errorMessage});
       });
   }
+
+  Sigin(){
+    this.router.navigate(['/auth/register']);
+  }
 }
