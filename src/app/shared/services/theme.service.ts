@@ -16,7 +16,7 @@ export class ThemeService {
     this.darkModeSubject.next(!this.darkModeSubject.value);
   }
 
-  // Método para obtener el estado actual (claro u oscuro)
+  // Método para obtener el estado actual del tema
   isDarkMode(): boolean {
     return this.darkModeSubject.value;
   }
